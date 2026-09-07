@@ -1,0 +1,145 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum LeadIntent {
+  contact
+  estimate
+}
+
+enum LeadStatus {
+  new
+  contacted
+  quoted
+  won
+  lost
+}
+
+enum LeadRole {
+  homeowner
+  contractor
+  gc
+  other
+}
+
+enum ImageType {
+  before
+  after
+  gallery
+  cover
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String?
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model SiteSettings {
+  id              String  @id @default("default")
+  companyName     String  @default("Ariosa & Constructions LLC")
+  tagline         String  @default("Building Dreams. Delivering Quality.")
+  phone           String  @default("(786) 786-5837")
+  email           String  @default("ariosaconstructions@gmail.com")
+  serviceArea     String  @default("South Florida / Miami-Dade")
+  address         String  @default("Miami, FL")
+  mapEmbedUrl     String  @default("https://maps.google.com/maps?q=Miami%2C%20FL&t=&z=11&ie=UTF8&iwloc=&output=embed")
+  aboutShort      String  @default("Ariosa & Constructions LLC delivers quality residential and commercial construction with integrity, craftsmanship, and clear communication.")
+  aboutLong       String  @default("Founded to serve homeowners, contractors, and general contractors across South Florida, Ariosa & Constructions LLC brings disciplined project management and skilled workmanship to every job—from remodels and additions to full general contracting.")
+  heroHeadline    String  @default("Building Dreams. Delivering Quality.")
+  heroSubheadline String  @default("Trusted construction partners for homeowners, contractors, and GCs across South Florida.")
+  heroImageUrl    String?
+  trustBadges     String  @default("Licensed & Insured|Quality Craftsmanship|On-Time Delivery")
+  yearsExperience String  @default("10+")
+  facebookUrl     String?
+  instagramUrl    String?
+  googleUrl       String?
+}
+
+model Service {
+  id          String   @id @default(cuid())
+  title       String
+  slug        String   @unique
+  summary     String
+  body        String
+  icon        String   @default("hammer")
+  imageUrl    String?
+  order       Int      @default(0)
+  published   Boolean  @default(true)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Project {
+  id          String         @id @default(cuid())
+  title       String
+  slug        String         @unique
+  summary     String
+  description String
+  location    String
+  category    String
+  featured    Boolean        @default(false)
+  published   Boolean        @default(true)
+  coverUrl    String?
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  images      ProjectImage[]
+}
+
+model ProjectImage {
+  id        String    @id @default(cuid())
+  projectId String
+  project   Project   @relation(fields: [projectId], references: [id], onDelete: Cascade)
+  url       String
+  alt       String?
+  type      ImageType @default(gallery)
+  order     Int       @default(0)
+}
+
+model Testimonial {
+  id        String   @id @default(cuid())
+  name      String
+  role      String
+  quote     String
+  rating    Int      @default(5)
+  published Boolean  @default(true)
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Lead {
+  id            String     @id @default(cuid())
+  name          String
+  phone         String
+  email         String
+  role          LeadRole   @default(homeowner)
+  intent        LeadIntent @default(estimate)
+  status        LeadStatus @default(new)
+  serviceInterest String?
+  projectRef    String?
+  addressArea   String?
+  budgetRange   String?
+  message       String?
+  photoUrl      String?
+  sourcePage    String?
+  notes         String?
+  createdAt     DateTime   @default(now())
+  updatedAt     DateTime   @updatedAt
+}
+
+model Media {
+  id        String   @id @default(cuid())
+  url       String
+  alt       String?
+  filename  String?
+  createdAt DateTime @default(now())
+}
