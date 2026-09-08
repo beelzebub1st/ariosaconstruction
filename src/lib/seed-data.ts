@@ -59,7 +59,7 @@ export const SEED_SERVICES = [
     body: "Kitchens and baths are where craftsmanship shows. We handle layout changes, plumbing and electrical coordination, tile, cabinetry, and finishes—delivering spaces that look sharp and perform under real use.",
     icon: "bath",
     imageUrl:
-      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?auto=format&fit=crop&w=1200&q=80",
     order: 3,
   },
   {
@@ -110,9 +110,9 @@ export const SEED_PROJECTS = [
     beforeUrl:
       "https://images.unsplash.com/photo-1556912173-46c336c7fd55?auto=format&fit=crop&w=1200&q=80",
     afterUrl:
-      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?auto=format&fit=crop&w=1200&q=80",
     coverUrl:
-      "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Cape Coral Bath Suite",
@@ -126,9 +126,9 @@ export const SEED_PROJECTS = [
     beforeUrl:
       "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=80",
     afterUrl:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=1200&q=80",
     coverUrl:
-      "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=1200&q=80",
   },
   {
     title: "Lehigh Acres Home Addition",
@@ -140,7 +140,7 @@ export const SEED_PROJECTS = [
     category: "Additions",
     featured: true,
     beforeUrl:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80",
+      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80",
     afterUrl:
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
     coverUrl:
