@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { CtaBand } from "@/components/site/CtaBand";
 import { EstimateButton } from "@/components/estimate/EstimateButton";
+import { ServiceAreas } from "@/components/site/ServiceAreas";
 import { Reveal, Stagger, StaggerItem, AnimatedLine } from "@/components/site/Motion";
 import { getSettings } from "@/lib/content";
 import { ArrowUpRight } from "lucide-react";
@@ -9,7 +10,7 @@ import { ArrowUpRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Ariosa & Constructions LLC—quality construction for homeowners, contractors, and GCs across South Florida.",
+    "Learn about Ariosa & Constructions LLC—quality construction for homeowners, contractors, and GCs across Fort Myers, Cape Coral, Naples, and Southwest Florida.",
 };
 
 export default async function AboutPage() {
@@ -153,6 +154,8 @@ export default async function AboutPage() {
           </div>
         </div>
       </section>
+
+      <ServiceAreas serviceArea={settings.serviceArea} variant="dark" />
 
       <CtaBand
         phone={settings.phone}

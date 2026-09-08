@@ -18,6 +18,7 @@ import { useEstimate } from "@/components/estimate/EstimateContext";
 import { submitLead } from "@/lib/actions/leads";
 import { cn, phoneHref } from "@/lib/utils";
 import type { PublicService } from "@/lib/seed-data";
+import { SERVICE_AREAS } from "@/lib/service-areas";
 
 const STEPS = ["You", "Services", "Project", "Contact"] as const;
 
@@ -376,9 +377,15 @@ export function EstimateModal({ services, phone }: Props) {
                           <input
                             value={area}
                             onChange={(e) => setArea(e.target.value)}
-                            placeholder="e.g. Coral Gables, Kendall…"
+                            list="service-areas"
+                            placeholder="e.g. Fort Myers, Cape Coral, Naples…"
                             className="w-full border border-navy/15 bg-white px-3.5 py-3 outline-none focus:border-navy"
                           />
+                          <datalist id="service-areas">
+                            {SERVICE_AREAS.map((city) => (
+                              <option key={city} value={city} />
+                            ))}
+                          </datalist>
                         </label>
                         <div>
                           <span className="mb-2 block text-xs font-bold uppercase tracking-[0.12em] text-navy">

@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { EstimateButton } from "@/components/estimate/EstimateButton";
+import { SERVICE_AREAS } from "@/lib/service-areas";
 import { mailtoHref, phoneHref } from "@/lib/utils";
 
 export function Footer({
@@ -38,7 +39,7 @@ export function Footer({
         </div>
       </div>
 
-      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-14 sm:px-6 md:grid-cols-[1.3fr_1fr_1fr]">
+      <div className="mx-auto grid max-w-6xl gap-12 px-4 py-14 sm:px-6 md:grid-cols-[1.2fr_0.8fr_1fr_1.1fr]">
         <div>
           <div className="flex items-center gap-3">
             <Image
@@ -109,6 +110,19 @@ export function Footer({
               <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-gold" />
               <span>{serviceArea}</span>
             </li>
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-[11px] font-bold uppercase tracking-[0.2em] text-gold">
+            Service areas
+          </h3>
+          <ul className="mt-5 columns-2 gap-x-6 space-y-2 text-sm text-white/70">
+            {SERVICE_AREAS.map((city) => (
+              <li key={city} className="break-inside-avoid">
+                {city}
+              </li>
+            ))}
           </ul>
         </div>
       </div>

@@ -1,4 +1,7 @@
 import type { LeadIntent, LeadRole, SiteSettings } from "@prisma/client";
+import { SERVICE_AREAS } from "@/lib/service-areas";
+
+export { SERVICE_AREAS };
 
 export const DEFAULT_SETTINGS: SiteSettings = {
   id: "default",
@@ -6,17 +9,17 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   tagline: "Building Dreams. Delivering Quality.",
   phone: "(786) 786-5837",
   email: "ariosaconstructions@gmail.com",
-  serviceArea: "South Florida / Miami-Dade",
-  address: "Miami, FL",
+  serviceArea: "Southwest Florida · Fort Myers & surrounding",
+  address: "Fort Myers, FL",
   mapEmbedUrl:
-    "https://maps.google.com/maps?q=Miami%2C%20FL&t=&z=11&ie=UTF8&iwloc=&output=embed",
+    "https://maps.google.com/maps?q=Fort%20Myers%2C%20FL&t=&z=10&ie=UTF8&iwloc=&output=embed",
   aboutShort:
     "Ariosa & Constructions LLC delivers quality residential and commercial construction with integrity, craftsmanship, and clear communication.",
   aboutLong:
-    "Founded to serve homeowners, contractors, and general contractors across South Florida, Ariosa & Constructions LLC brings disciplined project management and skilled workmanship to every job—from remodels and additions to full general contracting. We treat every project like it is our own home: clear timelines, honest estimates, and workmanship you can trust.",
+    "Founded to serve homeowners, contractors, and general contractors across Southwest Florida—from Fort Myers and Cape Coral to Naples, Lehigh Acres, and beyond—Ariosa & Constructions LLC brings disciplined project management and skilled workmanship to every job—from remodels and additions to full general contracting. We treat every project like it is our own home: clear timelines, honest estimates, and workmanship you can trust.",
   heroHeadline: "Building Dreams. Delivering Quality.",
   heroSubheadline:
-    "Trusted construction partners for homeowners, contractors, and GCs across South Florida.",
+    "Trusted construction partners for homeowners, contractors, and GCs across Fort Myers, Cape Coral, Naples, and surrounding Southwest Florida.",
   heroImageUrl: null,
   trustBadges: "Licensed & Insured|Quality Craftsmanship|On-Time Delivery",
   yearsExperience: "10+",
@@ -96,12 +99,12 @@ export const SEED_SERVICES = [
 
 export const SEED_PROJECTS = [
   {
-    title: "Coral Gables Kitchen Remodel",
-    slug: "coral-gables-kitchen-remodel",
+    title: "Fort Myers Kitchen Remodel",
+    slug: "fort-myers-kitchen-remodel",
     summary: "Full kitchen renovation with open layout, new cabinetry, and durable finishes.",
     description:
-      "This Coral Gables kitchen was transformed from a closed, dated layout into a bright, functional cooking and gathering space. We coordinated plumbing and electrical updates, installed new cabinetry and countertops, and finished with tile and lighting selected for longevity.",
-    location: "Coral Gables, FL",
+      "This Fort Myers kitchen was transformed from a closed, dated layout into a bright, functional cooking and gathering space. We coordinated plumbing and electrical updates, installed new cabinetry and countertops, and finished with tile and lighting selected for longevity.",
+    location: "Fort Myers, FL",
     category: "Kitchen & Bath",
     featured: true,
     beforeUrl:
@@ -112,12 +115,12 @@ export const SEED_PROJECTS = [
       "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?auto=format&fit=crop&w=1200&q=80",
   },
   {
-    title: "Miami Beach Bath Suite",
-    slug: "miami-beach-bath-suite",
+    title: "Cape Coral Bath Suite",
+    slug: "cape-coral-bath-suite",
     summary: "Primary bath refresh with waterproofing, tile, and spa-inspired fixtures.",
     description:
       "A tired primary bath became a calm, spa-like suite. Scope included demolition, waterproofing, new tile work, vanity and fixture installation, and careful detailing around wet areas for long-term performance.",
-    location: "Miami Beach, FL",
+    location: "Cape Coral, FL",
     category: "Kitchen & Bath",
     featured: true,
     beforeUrl:
@@ -128,12 +131,12 @@ export const SEED_PROJECTS = [
       "https://images.unsplash.com/photo-1600566753190-17f0baa2a6c3?auto=format&fit=crop&w=1200&q=80",
   },
   {
-    title: "Kendall Home Addition",
-    slug: "kendall-home-addition",
+    title: "Lehigh Acres Home Addition",
+    slug: "lehigh-acres-home-addition",
     summary: "Family-room addition tied into existing structure with matching exterior finishes.",
     description:
       "The owners needed more living space without relocating. We designed and built a rear addition, matched exterior materials, and completed interior finishes so the new room feels original to the home.",
-    location: "Kendall, FL",
+    location: "Lehigh Acres, FL",
     category: "Additions",
     featured: true,
     beforeUrl:
@@ -144,12 +147,12 @@ export const SEED_PROJECTS = [
       "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
   },
   {
-    title: "Doral Office TI",
-    slug: "doral-office-ti",
+    title: "Naples Office TI",
+    slug: "naples-office-ti",
     summary: "Commercial tenant improvement for a professional office suite.",
     description:
-      "A light commercial TI for a growing team in Doral. We framed partitions, upgraded finishes, coordinated MEP as needed, and delivered a clean, professional suite on a tight occupancy timeline.",
-    location: "Doral, FL",
+      "A light commercial TI for a growing team in Naples. We framed partitions, upgraded finishes, coordinated MEP as needed, and delivered a clean, professional suite on a tight occupancy timeline.",
+    location: "Naples, FL",
     category: "Commercial",
     featured: false,
     beforeUrl:
@@ -164,7 +167,7 @@ export const SEED_PROJECTS = [
 export const SEED_TESTIMONIALS = [
   {
     name: "Maria R.",
-    role: "Homeowner, Coral Gables",
+    role: "Homeowner, Fort Myers",
     quote:
       "Ariosa handled our kitchen remodel with clear communication and excellent craftsmanship. They finished on schedule and the space feels brand new.",
     rating: 5,
@@ -172,7 +175,7 @@ export const SEED_TESTIMONIALS = [
   },
   {
     name: "James T.",
-    role: "General Contractor",
+    role: "General Contractor, Cape Coral",
     quote:
       "Reliable partner on multi-trade jobs. They show up prepared, protect the schedule, and the workmanship holds up to inspection.",
     rating: 5,
@@ -180,7 +183,7 @@ export const SEED_TESTIMONIALS = [
   },
   {
     name: "Sofia L.",
-    role: "Homeowner, Kendall",
+    role: "Homeowner, Naples",
     quote:
       "From estimate to final walkthrough, everything was professional. Our addition looks seamless with the rest of the house.",
     rating: 5,

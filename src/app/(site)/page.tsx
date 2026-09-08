@@ -13,6 +13,7 @@ import {
   AnimatedLine,
 } from "@/components/site/Motion";
 import { ButtonLink } from "@/components/ui/Button";
+import { ServiceAreas } from "@/components/site/ServiceAreas";
 import {
   getProjects,
   getServices,
@@ -327,6 +328,8 @@ export default async function HomePage() {
           )}
         </div>
       </section>
+
+      <ServiceAreas serviceArea={settings.serviceArea} />
 
       <CtaBand
         phone={settings.phone}

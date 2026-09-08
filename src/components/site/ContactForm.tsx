@@ -129,7 +129,7 @@ export function ContactForm({
             <Field
               label="Project area / address"
               name="addressArea"
-              placeholder="City or neighborhood"
+              placeholder="e.g. Fort Myers, Cape Coral…"
             />
             <label className="block text-sm sm:col-span-2">
               <span className="mb-1.5 block text-xs font-bold uppercase tracking-[0.12em] text-navy">
