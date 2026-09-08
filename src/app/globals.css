@@ -238,6 +238,102 @@ h4 {
   animation: float-soft 5s ease-in-out infinite;
 }
 
+/* Service area map (Leaflet) */
+.ariosa-map .leaflet-container {
+  font-family: var(--font-dm), system-ui, sans-serif;
+  background: var(--stone);
+  z-index: 0;
+}
+
+.ariosa-map .leaflet-control-attribution {
+  font-size: 10px;
+  background: color-mix(in srgb, white 88%, transparent) !important;
+}
+
+.ariosa-map-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.ariosa-pin {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  filter: drop-shadow(0 6px 14px rgba(12, 24, 41, 0.22));
+}
+
+.ariosa-pin__dot {
+  position: relative;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: var(--navy);
+  border: 2px solid white;
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--navy) 25%, transparent);
+  flex-shrink: 0;
+}
+
+.ariosa-pin__dot::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 2px;
+  height: 8px;
+  transform: translateX(-50%);
+  background: var(--navy);
+}
+
+.ariosa-pin--hub .ariosa-pin__dot {
+  width: 16px;
+  height: 16px;
+  background: var(--brick);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--brick) 28%, transparent);
+}
+
+.ariosa-pin--hub .ariosa-pin__dot::after {
+  background: var(--brick);
+}
+
+.ariosa-pin__label {
+  display: inline-block;
+  padding: 0.28rem 0.55rem;
+  background: white;
+  color: var(--navy);
+  font-family: var(--font-syne), system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border: 1px solid color-mix(in srgb, var(--navy) 12%, transparent);
+  line-height: 1.2;
+}
+
+.ariosa-pin--hub .ariosa-pin__label {
+  background: var(--navy-dark);
+  color: var(--gold-soft);
+  border-color: transparent;
+}
+
+.ariosa-pin.is-active .ariosa-pin__dot {
+  background: var(--gold);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--gold) 35%, transparent);
+}
+
+.ariosa-pin.is-active .ariosa-pin__dot::after {
+  background: var(--gold);
+}
+
+.ariosa-pin.is-active .ariosa-pin__label {
+  background: var(--brick);
+  color: white;
+  border-color: transparent;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .marquee-track,
   .animate-draw,

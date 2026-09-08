@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
-import { ArrowUpRight, MapPin, MessageSquareText } from "lucide-react";
+import { ArrowUpRight, MessageSquareText } from "lucide-react";
 import { ContactDirect } from "@/components/site/ContactDirect";
+import { ContactServiceMap } from "@/components/site/ContactServiceMap";
 import { EstimateButton } from "@/components/estimate/EstimateButton";
 import { PageHero } from "@/components/site/PageHero";
-import { Reveal, AnimatedLine, Stagger, StaggerItem } from "@/components/site/Motion";
+import { Reveal, AnimatedLine } from "@/components/site/Motion";
 import { getSettings } from "@/lib/content";
-import { SERVICE_AREAS } from "@/lib/service-areas";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -15,9 +15,6 @@ export const metadata: Metadata = {
 
 export default async function ContactPage() {
   const settings = await getSettings();
-  const mapSrc =
-    settings.mapEmbedUrl ||
-    `https://maps.google.com/maps?q=${encodeURIComponent(settings.address || "Fort Myers, FL")}&t=&z=10&ie=UTF8&iwloc=&output=embed`;
 
   return (
     <>
@@ -66,60 +63,10 @@ export default async function ContactPage() {
         </div>
       </section>
 
-      <section className="texture-stone section-pad !pt-0">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <Reveal>
-            <p className="eyebrow">Service areas</p>
-            <h2 className="mt-3 font-display text-3xl font-extrabold text-navy sm:text-4xl">
-              Cities we serve
-            </h2>
-            <AnimatedLine className="mt-5 w-24" />
-          </Reveal>
-          <Stagger className="mt-10 grid gap-x-10 gap-y-0 sm:grid-cols-2 lg:grid-cols-5">
-            {SERVICE_AREAS.map((city, i) => (
-              <StaggerItem key={city}>
-                <div className="flex items-baseline gap-3 border-t border-navy/10 py-4">
-                  <span className="font-display text-xs font-bold tabular-nums text-gold">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span className="font-display text-lg font-bold text-navy">
-                    {city}
-                  </span>
-                </div>
-              </StaggerItem>
-            ))}
-          </Stagger>
-        </div>
-      </section>
-
-      <section className="bg-white pb-20">
-        <div className="mx-auto max-w-6xl px-4 sm:px-6">
-          <Reveal className="mb-8 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-            <div>
-              <p className="eyebrow">On the map</p>
-              <h2 className="mt-3 font-display text-3xl font-extrabold text-navy">
-                Find us around Fort Myers
-              </h2>
-            </div>
-            <p className="inline-flex items-center gap-2 text-sm text-muted">
-              <MapPin className="h-4 w-4 text-brick" />
-              {settings.address} · {settings.serviceArea}
-            </p>
-          </Reveal>
-          <Reveal delay={0.08}>
-            <div className="overflow-hidden border border-navy/10 bg-white shadow-[0_30px_60px_-40px_rgba(12,24,41,0.45)]">
-              <iframe
-                title="Ariosa & Constructions service area map"
-                src={mapSrc}
-                className="h-[360px] w-full border-0 sm:h-[440px]"
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                allowFullScreen
-              />
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      <ContactServiceMap
+        address={settings.address}
+        serviceArea={settings.serviceArea}
+      />
     </>
   );
 }
