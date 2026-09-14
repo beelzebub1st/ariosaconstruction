@@ -20,6 +20,7 @@ import {
   getSettings,
   getTestimonials,
 } from "@/lib/content";
+import { HERO_SUPPORT } from "@/lib/seed-data";
 import { phoneHref, smsHref, parseTrustBadges } from "@/lib/utils";
 
 export default async function HomePage() {
@@ -48,6 +49,7 @@ export default async function HomePage() {
         companyName={settings.companyName}
         headline={settings.heroHeadline}
         subheadline={settings.heroSubheadline}
+        supportText={HERO_SUPPORT}
         phone={settings.phone}
         heroImageUrl={settings.heroImageUrl}
       />
@@ -99,7 +101,7 @@ export default async function HomePage() {
       <section className="bg-navy-dark">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-10 gap-y-3 px-4 py-4 sm:px-6">
           <span className="text-[11px] font-bold uppercase tracking-[0.22em] text-gold">
-            {settings.yearsExperience} yrs
+            {settings.yearsExperience}
           </span>
           {trust.map((t) => (
             <span
@@ -109,9 +111,6 @@ export default async function HomePage() {
               {t}
             </span>
           ))}
-          <span className="text-[11px] font-semibold uppercase tracking-[0.18em] text-white/55">
-            {settings.serviceArea}
-          </span>
         </div>
       </section>
 
@@ -218,7 +217,7 @@ export default async function HomePage() {
           </div>
 
           <Stagger className="mt-12 grid gap-6 sm:grid-cols-2">
-            {services.slice(0, 4).map((service, i) => (
+            {services.slice(0, 6).map((service, i) => (
               <StaggerItem key={service.id}>
                 <Link
                   href={`/services/${service.slug}`}
@@ -291,9 +290,9 @@ export default async function HomePage() {
             <AnimatedLine className="mt-6 w-28" />
             <ul className="mt-8 space-y-5">
               {[
-                "Licensed craftsmanship with clean job sites",
-                "Clear estimates homeowners and GCs can plan around",
-                "Schedule-aware crews that pass inspection",
+                "Insured crews with clean, professional job sites",
+                "Clear estimates homeowners, contractors, and GCs can plan around",
+                "Reliable subcontracting that protects schedules and finishes strong",
               ].map((item) => (
                 <li key={item} className="flex gap-4 text-sm text-white/75 sm:text-[15px]">
                   <span className="mt-2 h-px w-8 shrink-0 bg-gold" />
@@ -334,7 +333,7 @@ export default async function HomePage() {
       <CtaBand
         phone={settings.phone}
         title="Your project starts with one conversation."
-        subtitle="Free estimate. Direct line to Ariosa. Homeowners, contractors, and GCs welcome."
+        subtitle="Free estimate. Direct line to Ariosa. Homeowners, contractors, and general contractors welcome."
       />
     </>
   );

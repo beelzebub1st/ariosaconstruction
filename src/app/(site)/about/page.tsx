@@ -10,7 +10,7 @@ import { ArrowUpRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "About Us",
   description:
-    "Learn about Ariosa & Constructions LLC—quality construction for homeowners, contractors, and GCs across Fort Myers, Cape Coral, Naples, and Southwest Florida.",
+    "Ariosa & Constructions LLC—reliable construction and subcontracting services for homeowners, contractors, and general contractors across Southwest Florida.",
 };
 
 export default async function AboutPage() {
@@ -56,8 +56,9 @@ export default async function AboutPage() {
               </h1>
               <AnimatedLine className="mt-6 w-28" />
               <p className="mt-6 max-w-md text-base leading-relaxed text-white/70 sm:text-lg">
-                {settings.tagline} Serving {settings.serviceArea} with disciplined
-                project delivery for homeowners, contractors, and GCs.
+                {settings.tagline} Reliable construction and subcontracting
+                across {settings.serviceArea} for homeowners, contractors, and
+                general contractors.
               </p>
               <div className="mt-8">
                 <EstimateButton size="lg">
@@ -71,23 +72,25 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {/* Story with oversized number */}
+      {/* Story */}
       <section className="bg-white section-pad">
-        <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.35fr_1fr]">
+        <div className="mx-auto grid max-w-6xl gap-12 px-4 sm:px-6 lg:grid-cols-[0.4fr_1fr]">
           <Reveal>
-            <div className="font-display text-[7rem] font-extrabold leading-none text-stone-dark sm:text-[9rem]">
+            <p className="text-[11px] font-bold uppercase tracking-[0.2em] text-brick">
+              Who we are
+            </p>
+            <div className="mt-4 font-display text-3xl font-extrabold leading-tight text-navy sm:text-4xl">
               {settings.yearsExperience}
             </div>
-            <p className="mt-2 text-xs font-bold uppercase tracking-[0.2em] text-brick">
-              Years of building trust
-            </p>
           </Reveal>
           <Reveal delay={0.1}>
             <h2 className="font-display text-3xl font-extrabold text-navy sm:text-4xl">
               Our story is simple: show up prepared, communicate clearly, finish clean.
             </h2>
             <p className="mt-6 leading-relaxed text-muted">{settings.aboutLong}</p>
-            <p className="mt-4 leading-relaxed text-muted">{settings.aboutShort}</p>
+            <p className="mt-4 font-display text-xl font-bold text-navy">
+              {settings.aboutShort}
+            </p>
           </Reveal>
         </div>
       </section>

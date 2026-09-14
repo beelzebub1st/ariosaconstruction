@@ -10,7 +10,7 @@ import { ArrowUpRight } from "lucide-react";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "General contracting, remodeling, kitchen & bath, additions, concrete, and commercial tenant improvements.",
+    "Construction and subcontracting services across Southwest Florida—framing, drywall, remodeling, flooring, painting, trim, and more.",
 };
 
 export default async function ServicesPage() {
@@ -20,16 +20,18 @@ export default async function ServicesPage() {
     <>
       <PageHero
         eyebrow="Capabilities"
-        title="Services with a point of view"
-        description="Not a menu of everything. A focused set of builds we execute with accountability."
+        title="Construction & subcontracting scopes"
+        description="Skilled crews for homeowners, contractors, and general contractors—focused trades executed with accountability."
       />
 
       <section className="bg-white section-pad">
         <div className="mx-auto max-w-6xl px-4 sm:px-6">
           <Reveal className="mb-6 flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
             <p className="max-w-xl text-muted">
-              Choose a service to learn more—or jump straight into an estimate with
-              that scope already selected.
+              From framing and drywall to remodeling, flooring, painting, and
+              finish work—Ariosa provides reliable construction support across
+              Southwest Florida. Choose a service to learn more—or jump
+              straight into an estimate with that scope already selected.
             </p>
             <EstimateButton>
               Build custom estimate

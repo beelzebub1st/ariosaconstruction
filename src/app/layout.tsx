@@ -20,8 +20,10 @@ export const metadata: Metadata = {
     template: "%s | Ariosa & Constructions LLC",
   },
   description:
-    "Southwest Florida construction company serving Fort Myers, Cape Coral, Naples, Lehigh Acres, and surrounding areas. Remodeling, additions, general contracting, and more. Call (786) 786-5837.",
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000"),
+    "Southwest Florida construction and subcontracting company serving Fort Myers, Cape Coral, Naples, Lehigh Acres, and surrounding areas. Framing, drywall, remodeling, flooring, painting, and more. Call (786) 786-5837.",
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL || "https://ariosaconstructions.com"
+  ),
   openGraph: {
     title: "Ariosa & Constructions LLC",
     description: "Building Dreams. Delivering Quality.",

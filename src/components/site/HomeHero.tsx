@@ -12,12 +12,14 @@ const ease = [0.16, 1, 0.3, 1] as const;
 export function HomeHero({
   headline,
   subheadline,
+  supportText,
   phone,
   heroImageUrl,
 }: {
   companyName?: string;
   headline: string;
   subheadline: string;
+  supportText?: string;
   phone: string;
   heroImageUrl?: string | null;
 }) {
@@ -97,10 +99,21 @@ export function HomeHero({
             initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.62, ease }}
-            className="mt-7 max-w-lg text-base leading-relaxed text-white/75 sm:text-lg"
+            className="mt-7 max-w-xl text-lg font-semibold leading-snug text-gold-soft sm:text-xl"
           >
             {subheadline}
           </motion.p>
+
+          {supportText ? (
+            <motion.p
+              initial={{ opacity: 0, y: 18 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7, delay: 0.7, ease }}
+              className="mt-4 max-w-lg text-base leading-relaxed text-white/75 sm:text-lg"
+            >
+              {supportText}
+            </motion.p>
+          ) : null}
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}

@@ -37,7 +37,7 @@ export default async function SiteSettingsPage() {
         <p className="-mt-2 text-xs text-muted">
           Tip: open Google Maps → Share → Embed a map → copy the iframe src URL.
         </p>
-        <Field name="yearsExperience" label="Years experience label" defaultValue={settings.yearsExperience} />
+        <Field name="yearsExperience" label="Experience label (shown on site)" defaultValue={settings.yearsExperience} />
         <Field name="trustBadges" label="Trust badges (pipe-separated)" defaultValue={settings.trustBadges} />
         <Field name="heroHeadline" label="Hero headline" defaultValue={settings.heroHeadline} />
         <Field name="heroSubheadline" label="Hero subheadline" defaultValue={settings.heroSubheadline} />

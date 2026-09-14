@@ -9,19 +9,19 @@ const audiences = [
     role: "homeowner" as const,
     icon: Home,
     label: "Homeowners",
-    text: "Remodels, kitchens, baths & additions—clear estimates, clean job sites.",
+    text: "Remodels, kitchens, baths, flooring & finishes—clear estimates, clean job sites.",
   },
   {
     role: "contractor" as const,
     icon: HardHat,
     label: "Contractors",
-    text: "Reliable build support that protects your schedule and reputation.",
+    text: "Reliable construction support that protects your schedule and reputation.",
   },
   {
     role: "gc" as const,
     icon: Building2,
     label: "General Contractors",
-    text: "Inspection-ready workmanship. We show up prepared and finish strong.",
+    text: "Dependable subcontract crews—framing, drywall, finishes, and more—that show up prepared.",
   },
 ];
 

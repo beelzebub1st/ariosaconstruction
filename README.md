@@ -1,30 +1,36 @@
 # Ariosa & Constructions LLC
 
-Professional multi-page construction website. Built for Vercel.
+Professional multi-page construction & subcontracting website for Southwest Florida.
 
 **Brand:** Building Dreams. Delivering Quality.  
-**Phone:** (786) 786-5837 · **Email:** ariosaconstructions@gmail.com
+**Phone:** (786) 786-5837 · **Email:** ariosaconstructions@gmail.com  
+**Domain:** https://ariosaconstructions.com
 
-## How content works right now
+## How content works
 
 The site runs on **hardcoded content** in `src/lib/seed-data.ts`.  
 No database is required to develop or deploy.
 
-Later, connect Neon Postgres and set:
+## Required Vercel environment variables
 
-```
-USE_DATABASE=true
-DATABASE_URL=...
-```
+| Variable | Required | Notes |
+|----------|----------|-------|
+| `AUTH_SECRET` | **Yes** | Long random string for Auth.js |
+| `ADMIN_EMAIL` | **Yes** | Admin login email |
+| `ADMIN_PASSWORD` | **Yes** | Admin login password |
+| `NEXT_PUBLIC_SITE_URL` | **Yes** | `https://ariosaconstructions.com` |
+| `USE_DATABASE` | Recommended | Set to `false` until Neon is ready |
+| `CONTACT_TO_EMAIL` | Recommended | `ariosaconstructions@gmail.com` |
+| `DATABASE_URL` | Later | Only when enabling the CMS database |
+| `RESEND_API_KEY` | Optional | Email notifications for leads |
+| `BLOB_READ_WRITE_TOKEN` | Optional | Admin media uploads |
 
-Then run `npm run db:push && npm run db:seed` to load the same content into the CMS.
+## Custom domain (ariosaconstructions.com)
 
-## Stack
-
-- Next.js (App Router) + TypeScript + Tailwind CSS
-- Hardcoded site content (Prisma/Neon ready for later)
-- Auth.js credentials for `/admin`
-- Vercel Blob + Resend (optional)
+1. In Vercel → Project → **Settings → Domains** → add `ariosaconstructions.com` and `www.ariosaconstructions.com`
+2. At your domain registrar, point DNS as Vercel instructs (usually A/CNAME records)
+3. Set `NEXT_PUBLIC_SITE_URL=https://ariosaconstructions.com` in Vercel env vars
+4. Redeploy
 
 ## Local setup
 
@@ -35,36 +41,11 @@ npm run dev
 ```
 
 - Site: http://localhost:3000  
-- Admin login: http://localhost:3000/admin/login  
-- Default: `admin@ariosaconstructions.com` / `ariosa-admin-change-me`
+- Admin: http://localhost:3000/admin/login  
 
-Admin CMS edits need `USE_DATABASE=true` + a real database. The public site works without it.
+## Stack
 
-## Enable database later
-
-1. Create a Neon Postgres database  
-2. Set `DATABASE_URL` and `USE_DATABASE=true`  
-3. Run:
-
-```bash
-npm run db:push
-npm run db:seed
-```
-
-## Vercel deploy
-
-1. Import this GitHub repo in Vercel  
-2. Set at least: `AUTH_SECRET`, `ADMIN_EMAIL`, `ADMIN_PASSWORD`, `NEXT_PUBLIC_SITE_URL`  
-3. Keep `USE_DATABASE=false` until Neon is ready  
-4. Build command: `prisma generate && next build` (in `package.json`)
-
-## Pages
-
-| Route | Purpose |
-|-------|---------|
-| `/` | Home |
-| `/about` | About |
-| `/services` | Services + detail |
-| `/projects` | Gallery + before/after |
-| `/contact` | Contact + map + estimate wizard |
-| `/admin` | CMS (DB optional later) |
+- Next.js (App Router) + TypeScript + Tailwind CSS
+- Hardcoded site content (Prisma/Neon ready for later)
+- Auth.js credentials for `/admin`
+- Vercel Blob + Resend (optional)

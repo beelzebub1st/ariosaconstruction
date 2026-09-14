@@ -3,6 +3,9 @@ import { SERVICE_AREAS } from "@/lib/service-areas";
 
 export { SERVICE_AREAS };
 
+export const HERO_SUPPORT =
+  "Serving homeowners, contractors, and general contractors with skilled crews, quality workmanship, and dependable project execution.";
+
 export const DEFAULT_SETTINGS: SiteSettings = {
   id: "default",
   companyName: "Ariosa & Constructions LLC",
@@ -13,16 +16,15 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   address: "Fort Myers, FL",
   mapEmbedUrl:
     "https://maps.google.com/maps?q=Fort%20Myers%2C%20FL&t=&z=10&ie=UTF8&iwloc=&output=embed",
-  aboutShort:
-    "Ariosa & Constructions LLC delivers quality residential and commercial construction with integrity, craftsmanship, and clear communication.",
+  aboutShort: "Show up prepared, communicate clearly, finish clean.",
   aboutLong:
-    "Founded to serve homeowners, contractors, and general contractors across Southwest Florida—from Fort Myers and Cape Coral to Naples, Lehigh Acres, and beyond—Ariosa & Constructions LLC brings disciplined project management and skilled workmanship to every job—from remodels and additions to full general contracting. We treat every project like it is our own home: clear timelines, honest estimates, and workmanship you can trust.",
+    "Ariosa & Constructions LLC provides reliable residential and commercial construction services throughout Southwest Florida. We work with homeowners, contractors, and general contractors, providing skilled labor and dependable project execution across framing, drywall, remodeling, flooring, painting, trim, and other construction scopes.",
   heroHeadline: "Building Dreams. Delivering Quality.",
   heroSubheadline:
-    "Trusted construction partners for homeowners, contractors, and GCs across Fort Myers, Cape Coral, Naples, and surrounding Southwest Florida.",
+    "Reliable Construction & Subcontracting Services Across Southwest Florida",
   heroImageUrl: null,
-  trustBadges: "Licensed & Insured|Quality Craftsmanship|On-Time Delivery",
-  yearsExperience: "10+",
+  trustBadges: "Insured|Quality Craftsmanship|Reliable Crews|Southwest Florida",
+  yearsExperience: "Experienced Construction Team",
   facebookUrl: null,
   instagramUrl: null,
   googleUrl: null,
@@ -30,72 +32,147 @@ export const DEFAULT_SETTINGS: SiteSettings = {
 
 export const SEED_SERVICES = [
   {
-    title: "General Contracting",
-    slug: "general-contracting",
+    title: "Construction & Subcontracting Services",
+    slug: "construction-subcontracting",
     summary:
-      "End-to-end project leadership—from permits and scheduling to quality control and final walkthrough.",
-    body: "Whether you are a homeowner coordinating a complex remodel or a GC looking for a reliable partner, Ariosa & Constructions manages the full build. We coordinate trades, protect your timeline, and keep communication clear so the job stays on track and on budget.",
+      "Reliable construction support for homeowners, contractors, and general contractors throughout Southwest Florida.",
+    body: "Ariosa & Constructions LLC delivers skilled construction and subcontracting support—coordinated crews, clear communication, and quality workmanship. We partner with homeowners, contractors, and general contractors to execute scopes on schedule without presenting ourselves as the licensed general contractor of record.",
     icon: "hard-hat",
-    imageUrl:
-      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/projects/swfl-luxury-drywall-estate/cover.jpg",
     order: 1,
+  },
+  {
+    title: "Wood Framing & Structural Framing",
+    slug: "wood-framing-structural-framing",
+    summary:
+      "Accurate wood and structural framing that sets the bones of the build for a clean, inspection-ready shell.",
+    body: "From walls and openings to layout and structural framing, our crews cut, set, and fasten with care so the rest of the project can move forward confidently. We focus on square, plumb, and solid workmanship that holds up under Florida conditions.",
+    icon: "frame",
+    imageUrl: "/projects/commercial-ti-mezzanine/cover.jpg",
+    order: 2,
+  },
+  {
+    title: "Roof & Floor Truss Installation",
+    slug: "roof-floor-truss-installation",
+    summary:
+      "Safe, precise roof and floor truss installation coordinated with your framing schedule.",
+    body: "We install roof and floor trusses with disciplined layout, bracing, and fastening practices. Whether supporting a GC's schedule or a residential remodel, we keep the critical path moving and leave the structure ready for decking and finishes.",
+    icon: "truss",
+    imageUrl: "/projects/_extras/extra-05.jpg",
+    order: 3,
+  },
+  {
+    title: "Roof Decking / Sheathing",
+    slug: "roof-decking-sheathing",
+    summary:
+      "Solid roof decking and sheathing for a weather-ready envelope and dependable substrate.",
+    body: "Proper decking and sheathing protect the structure and create a reliable base for roofing systems. Our team installs panels cleanly, with attention to fastening patterns, edges, and openings so the envelope is ready for the next trade.",
+    icon: "layers",
+    imageUrl: "/projects/coastal-home-siding-rebuild/cover.jpg",
+    order: 4,
+  },
+  {
+    title: "Drywall Installation & Finishing – Level 4 / Level 5",
+    slug: "drywall-installation-finishing",
+    summary:
+      "Hang, tape, and finish drywall to Level 4 or Level 5 standards for paint-ready interiors.",
+    body: "From hanging board to Level 4 and Level 5 finishes—including tray ceilings and architectural details—we deliver smooth, paint-ready surfaces. Our crews protect schedules with clean job sites and consistent finishing quality.",
+    icon: "drywall",
+    imageUrl: "/projects/swfl-luxury-drywall-estate/gallery-06.jpg",
+    order: 5,
   },
   {
     title: "Residential Remodeling",
     slug: "residential-remodeling",
     summary:
-      "Whole-home and targeted remodels that elevate living spaces without sacrificing structure or code.",
-    body: "From open-concept conversions to full gut renovations, we remodel with precision. Our team protects what stays, upgrades what matters, and leaves you with a home that feels new—and built to last in South Florida conditions.",
+      "Targeted and whole-home remodeling with skilled labor and dependable project execution.",
+    body: "Whether refreshing living spaces or supporting a larger remodel under a contractor or GC, we bring reliable crews for demolition, framing support, drywall, finishes, and related scopes—executed cleanly and on communication.",
     icon: "home",
-    imageUrl:
-      "https://images.unsplash.com/photo-1484154218962-a197022b5858?auto=format&fit=crop&w=1200&q=80",
-    order: 2,
-  },
-  {
-    title: "Kitchen & Bath",
-    slug: "kitchen-bath",
-    summary:
-      "Functional, beautiful kitchens and baths designed for daily life and lasting durability.",
-    body: "Kitchens and baths are where craftsmanship shows. We handle layout changes, plumbing and electrical coordination, tile, cabinetry, and finishes—delivering spaces that look sharp and perform under real use.",
-    icon: "bath",
-    imageUrl:
-      "https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?auto=format&fit=crop&w=1200&q=80",
-    order: 3,
-  },
-  {
-    title: "Additions & Renovations",
-    slug: "additions-renovations",
-    summary:
-      "Expand your footprint with seamless additions that match your home’s structure and style.",
-    body: "Need more room without moving? We plan and build additions and major renovations that integrate with existing structures, meet code, and feel like they’ve always belonged.",
-    icon: "expand",
-    imageUrl:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-    order: 4,
-  },
-  {
-    title: "Concrete & Exterior",
-    slug: "concrete-exterior",
-    summary:
-      "Driveways, patios, exterior repairs, and hardscape work built for Florida weather.",
-    body: "Exterior work has to stand up to sun, rain, and storms. We deliver concrete and exterior improvements with proper prep, drainage awareness, and finishes that hold up season after season.",
-    icon: "layers",
-    imageUrl:
-      "https://images.unsplash.com/photo-1590674899484-d5640e854abe?auto=format&fit=crop&w=1200&q=80",
-    order: 5,
-  },
-  {
-    title: "Commercial Tenant Improvements",
-    slug: "commercial-tenant-improvements",
-    summary:
-      "Efficient TI build-outs for offices, retail, and light commercial spaces.",
-    body: "Contractors and property teams trust us for tenant improvements that respect lease timelines. We coordinate with stakeholders, minimize disruption, and deliver clean, professional spaces ready for business.",
-    icon: "building",
-    imageUrl:
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80",
+    imageUrl: "/projects/open-concept-luxury-living/cover.jpg",
     order: 6,
   },
+  {
+    title: "Kitchen & Bathroom Renovations",
+    slug: "kitchen-bathroom-renovations",
+    summary:
+      "Kitchen and bath renovations with careful detailing, durable finishes, and tidy sites.",
+    body: "Kitchens and baths demand precision. We support renovations with demolition, finish carpentry coordination, tile, and related interior scopes—delivering spaces that look sharp and perform under daily use.",
+    icon: "bath",
+    imageUrl: "/projects/fort-myers-marble-kitchen-media/cover.jpg",
+    order: 7,
+  },
+  {
+    title: "Tile & LVP Flooring",
+    slug: "tile-lvp-flooring",
+    summary:
+      "Professional tile and LVP flooring installation with clean transitions and level results.",
+    body: "From large-format tile to LVP, we prepare substrates carefully and install flooring for a finished look that lasts. Leveling, layout, and transitions are handled with the same discipline we bring to every trade.",
+    icon: "floor",
+    imageUrl: "/projects/open-concept-luxury-living/before.jpg",
+    order: 8,
+  },
+  {
+    title: "Interior & Exterior Painting",
+    slug: "interior-exterior-painting",
+    summary:
+      "Interior and exterior painting with proper prep, clean cut-ins, and durable coverage.",
+    body: "Prep makes the paint job. We mask, sand, and cut in carefully for crisp lines on interiors and weather-ready exteriors—including multi-family and residential refresh work across Southwest Florida.",
+    icon: "paint",
+    imageUrl: "/projects/multifamily-exterior-refresh/cover.jpg",
+    order: 9,
+  },
+  {
+    title: "Baseboards, Trim & Interior Doors",
+    slug: "baseboards-trim-interior-doors",
+    summary:
+      "Finish carpentry for baseboards, trim, and interior doors that completes the space.",
+    body: "Clean trim work is what makes a remodel feel finished. We install baseboards, casing, and interior doors with tight miters, consistent reveals, and careful fastening for a professional final look.",
+    icon: "door",
+    imageUrl: "/projects/custom-living-accent-walls/cover.jpg",
+    order: 10,
+  },
+  {
+    title: "Demolition & Renovation Work",
+    slug: "demolition-renovation-work",
+    summary:
+      "Controlled demolition and renovation prep that protects what stays and clears the path to build.",
+    body: "We tear out selectively, protect adjacent finishes, and leave the site ready for the next phase. Controlled demolition keeps remodeling and subcontract scopes moving without unnecessary damage or delay.",
+    icon: "demolition",
+    imageUrl: "/projects/coastal-home-siding-rebuild/before.jpg",
+    order: 11,
+  },
+  {
+    title: "Windows & Doors",
+    slug: "windows-doors",
+    summary:
+      "Window and door installation support for openings that are square, sealed, and ready for finish.",
+    body: "Proper openings matter for performance and appearance. We support window and door installation with careful layout, fastening, and coordination so units sit true and ready for weatherization and trim.",
+    icon: "window",
+    imageUrl: "/projects/coastal-home-siding-rebuild/after.jpg",
+    order: 12,
+  },
+  {
+    title: "Insulation",
+    slug: "insulation",
+    summary:
+      "Insulation installation that improves comfort and supports energy performance.",
+    body: "We install insulation cleanly and completely—fitting cavities, sealing gaps where required, and preparing walls and ceilings for drywall. Done right, insulation protects comfort and supports the finished envelope.",
+    icon: "insulation",
+    imageUrl: "/projects/_extras/extra-01.jpg",
+    order: 13,
+  },
+  {
+    title: "Construction Subcontracting for General Contractors",
+    slug: "subcontracting-for-general-contractors",
+    summary:
+      "Dependable subcontract crews for GCs who need skilled labor that protects the schedule.",
+    body: "General contractors trust Ariosa for framing, drywall, finishes, and related scopes delivered with clear communication and inspection-aware workmanship. We show up prepared, protect your timeline, and finish strong as your construction subcontractor—not as the GC of record.",
+    icon: "building",
+    imageUrl: "/projects/swfl-luxury-drywall-estate/gallery-01.jpg",
+    order: 14,
+  },
 ];
+
 
 export const SEED_PROJECTS = [
   {
@@ -261,32 +338,13 @@ export const SEED_PROJECTS = [
   },
 ];
 
-export const SEED_TESTIMONIALS = [
-  {
-    name: "Maria R.",
-    role: "Homeowner, Fort Myers",
-    quote:
-      "Ariosa transformed our kitchen and living spaces with clear communication and excellent craftsmanship. The waterfall island still gets compliments every week.",
-    rating: 5,
-    order: 1,
-  },
-  {
-    name: "James T.",
-    role: "General Contractor, Cape Coral",
-    quote:
-      "Reliable partner on multi-trade jobs. Their drywall and exterior crews show up prepared, protect the schedule, and the workmanship holds up to inspection.",
-    rating: 5,
-    order: 2,
-  },
-  {
-    name: "Sofia L.",
-    role: "Homeowner, Southwest Florida",
-    quote:
-      "From estimate to final walkthrough, everything was professional. Our spa bath and accent walls look like a resort suite—and they finished clean.",
-    rating: 5,
-    order: 3,
-  },
-];
+export const SEED_TESTIMONIALS: {
+  name: string;
+  role: string;
+  quote: string;
+  rating: number;
+  order: number;
+}[] = [];
 
 export type PublicProject = {
   id: string;

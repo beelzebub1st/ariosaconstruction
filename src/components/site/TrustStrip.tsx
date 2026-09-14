@@ -9,7 +9,7 @@ export function TrustStrip({
   badges: string;
   yearsExperience: string;
 }) {
-  const items = [`${yearsExperience} Years Experience`, ...parseTrustBadges(badges)];
+  const items = [yearsExperience, ...parseTrustBadges(badges)];
   const loop = [...items, ...items];
 
   return (
