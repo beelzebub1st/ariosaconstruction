@@ -32,6 +32,7 @@ export default async function ProjectDetailPage({ params }: Props) {
   if (!project) notFound();
 
   const gallery = project.images.filter((i) => i.type === "gallery");
+  const cover = project.coverUrl || project.afterUrl;
 
   return (
     <>
@@ -44,14 +45,44 @@ export default async function ProjectDetailPage({ params }: Props) {
       <section className="bg-white section-pad">
         <div className="mx-auto max-w-5xl px-4 sm:px-6">
           <Reveal>
-            {project.beforeUrl && project.afterUrl && (
+            {project.beforeUrl && project.afterUrl ? (
               <BeforeAfterSlider
                 beforeSrc={project.beforeUrl}
                 afterSrc={project.afterUrl}
                 className="aspect-[16/10]"
               />
-            )}
+            ) : cover ? (
+              <div className="relative aspect-[16/10] overflow-hidden bg-navy/5">
+                <Image
+                  src={cover}
+                  alt={project.title}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 960px"
+                  priority
+                />
+              </div>
+            ) : null}
           </Reveal>
+
+          {project.videoUrl ? (
+            <Reveal className="mt-8" delay={0.06}>
+              <div className="overflow-hidden border border-navy/10 bg-navy-dark">
+                <video
+                  controls
+                  playsInline
+                  preload="metadata"
+                  poster={cover || undefined}
+                  className="aspect-video w-full bg-black"
+                >
+                  <source src={project.videoUrl} type="video/mp4" />
+                </video>
+                <p className="px-4 py-3 text-xs font-semibold uppercase tracking-[0.16em] text-gold">
+                  Project walkthrough
+                </p>
+              </div>
+            </Reveal>
+          ) : null}
 
           <div className="mt-14 grid gap-10 lg:grid-cols-[1.2fr_0.8fr]">
             <Reveal delay={0.08}>
@@ -85,18 +116,26 @@ export default async function ProjectDetailPage({ params }: Props) {
           </div>
 
           {gallery.length > 0 && (
-            <div className="mt-14 grid gap-4 sm:grid-cols-2">
-              {gallery.map((img) => (
-                <div key={img.id} className="relative aspect-[4/3] overflow-hidden">
-                  <Image
-                    src={img.url}
-                    alt={img.alt || project.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 100vw, 50vw"
-                  />
-                </div>
-              ))}
+            <div className="mt-14">
+              <Reveal>
+                <h2 className="font-display text-2xl font-bold text-navy">
+                  Project gallery
+                </h2>
+                <AnimatedLine className="mt-4 w-24" />
+              </Reveal>
+              <div className="mt-8 grid gap-4 sm:grid-cols-2">
+                {gallery.map((img) => (
+                  <div key={img.id} className="relative aspect-[4/3] overflow-hidden">
+                    <Image
+                      src={img.url}
+                      alt={img.alt || project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 640px) 100vw, 50vw"
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
           )}
         </div>

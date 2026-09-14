@@ -36,7 +36,8 @@ async function main() {
   }
 
   for (const project of SEED_PROJECTS) {
-    const { beforeUrl, afterUrl, coverUrl, ...rest } = project;
+    const { beforeUrl, afterUrl, coverUrl, gallery, videoUrl: _videoUrl, ...rest } =
+      project;
     const saved = await prisma.project.upsert({
       where: { slug: project.slug },
       update: {
@@ -52,24 +53,47 @@ async function main() {
     });
 
     await prisma.projectImage.deleteMany({ where: { projectId: saved.id } });
-    await prisma.projectImage.createMany({
-      data: [
-        {
-          projectId: saved.id,
-          url: beforeUrl,
-          type: "before",
-          alt: `${project.title} before`,
-          order: 0,
-        },
-        {
-          projectId: saved.id,
-          url: afterUrl,
-          type: "after",
-          alt: `${project.title} after`,
-          order: 1,
-        },
-      ],
-    });
+    const imageRows: {
+      projectId: string;
+      url: string;
+      type: "before" | "after" | "gallery";
+      alt: string;
+      order: number;
+    }[] = [
+      ...(beforeUrl
+        ? [
+            {
+              projectId: saved.id,
+              url: beforeUrl,
+              type: "before" as const,
+              alt: `${project.title} before`,
+              order: 0,
+            },
+          ]
+        : []),
+      ...(afterUrl
+        ? [
+            {
+              projectId: saved.id,
+              url: afterUrl,
+              type: "after" as const,
+              alt: `${project.title} after`,
+              order: 1,
+            },
+          ]
+        : []),
+      ...(gallery ?? []).map((url, i) => ({
+        projectId: saved.id,
+        url,
+        type: "gallery" as const,
+        alt: `${project.title} gallery ${i + 1}`,
+        order: 2 + i,
+      })),
+    ];
+
+    if (imageRows.length) {
+      await prisma.projectImage.createMany({ data: imageRows });
+    }
   }
 
   const existingTestimonials = await prisma.testimonial.count();

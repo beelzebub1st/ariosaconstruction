@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { BeforeAfterSlider } from "@/components/site/BeforeAfterSlider";
@@ -44,6 +45,7 @@ export function ProjectsGallery({
       <div className="mt-14 space-y-20">
         {projects.map((project, i) => {
           const reverse = i % 2 === 1;
+          const cover = project.coverUrl || project.afterUrl;
           return (
             <Reveal key={project.id} delay={0.04}>
               <article
@@ -59,6 +61,16 @@ export function ProjectsGallery({
                     afterAlt={`${project.title} after`}
                     className="aspect-[5/4]"
                   />
+                ) : cover ? (
+                  <div className="relative aspect-[5/4] overflow-hidden bg-navy/5">
+                    <Image
+                      src={cover}
+                      alt={project.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 1024px) 100vw, 50vw"
+                    />
+                  </div>
                 ) : (
                   <div className="aspect-[5/4] bg-navy/10" />
                 )}

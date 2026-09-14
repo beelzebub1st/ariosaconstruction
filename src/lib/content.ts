@@ -122,6 +122,7 @@ export async function getProjects(opts?: {
         coverUrl: project.coverUrl,
         beforeUrl: before?.url ?? null,
         afterUrl: after?.url ?? null,
+        videoUrl: null,
         images: project.images,
       };
     });

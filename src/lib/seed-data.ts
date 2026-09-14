@@ -99,68 +99,165 @@ export const SEED_SERVICES = [
 
 export const SEED_PROJECTS = [
   {
-    title: "Fort Myers Kitchen Remodel",
-    slug: "fort-myers-kitchen-remodel",
-    summary: "Full kitchen renovation with open layout, new cabinetry, and durable finishes.",
+    title: "Luxury Estate Drywall & Ceilings",
+    slug: "swfl-luxury-drywall-estate",
+    summary:
+      "Precision drywall, tray ceilings, and architectural interiors on a large Southwest Florida residence—captured with our crew on site.",
     description:
-      "This Fort Myers kitchen was transformed from a closed, dated layout into a bright, functional cooking and gathering space. We coordinated plumbing and electrical updates, installed new cabinetry and countertops, and finished with tile and lighting selected for longevity.",
+      "From complex tray and coffered ceilings to clean tape-and-mud across great rooms, halls, and kitchen zones, this estate project showcases Ariosa’s finishing craftsmanship. Our team delivered consistent, paint-ready surfaces while coordinating around impact windows, openings, and active trades—setting the home up for millwork, paint, and final fixtures.",
+    location: "Southwest Florida",
+    category: "Residential Remodeling",
+    featured: true,
+    beforeUrl: "/projects/swfl-luxury-drywall-estate/before.jpg",
+    afterUrl: "/projects/swfl-luxury-drywall-estate/after.jpg",
+    coverUrl: "/projects/swfl-luxury-drywall-estate/cover.jpg",
+    videoUrl: "/projects/swfl-luxury-drywall-estate/walkthrough.mp4",
+    gallery: [
+      "/projects/swfl-luxury-drywall-estate/gallery-01.jpg",
+      "/projects/swfl-luxury-drywall-estate/gallery-02.jpg",
+      "/projects/swfl-luxury-drywall-estate/gallery-03.jpg",
+      "/projects/swfl-luxury-drywall-estate/gallery-04.jpg",
+      "/projects/swfl-luxury-drywall-estate/gallery-05.jpg",
+      "/projects/swfl-luxury-drywall-estate/gallery-06.jpg",
+      "/projects/swfl-luxury-drywall-estate/gallery-07.jpg",
+      "/projects/swfl-luxury-drywall-estate/gallery-08.jpg",
+      "/projects/swfl-luxury-drywall-estate/gallery-09.jpg",
+      "/projects/swfl-luxury-drywall-estate/gallery-10.jpg",
+    ],
+  },
+  {
+    title: "Modern Marble Kitchen & Media Walls",
+    slug: "fort-myers-marble-kitchen-media",
+    summary:
+      "Open-concept kitchen with a waterfall island, large-format marble-look surfaces, and custom media feature walls.",
+    description:
+      "This remodel unifies a chef-ready kitchen and living zones with continuous marble-look flooring, a waterfall-edge island, and statement media walls with integrated lighting. Custom cabinetry, stone fabrication, and careful electrical detailing create a bright, high-end Southwest Florida home built for everyday living.",
     location: "Fort Myers, FL",
     category: "Kitchen & Bath",
     featured: true,
-    beforeUrl:
-      "https://images.unsplash.com/photo-1556912173-46c336c7fd55?auto=format&fit=crop&w=1200&q=80",
-    afterUrl:
-      "https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?auto=format&fit=crop&w=1200&q=80",
-    coverUrl:
-      "https://images.unsplash.com/photo-1565183928294-7063f23ce0f8?auto=format&fit=crop&w=1200&q=80",
+    beforeUrl: "/projects/fort-myers-marble-kitchen-media/before.jpg",
+    afterUrl: "/projects/fort-myers-marble-kitchen-media/after.jpg",
+    coverUrl: "/projects/fort-myers-marble-kitchen-media/cover.jpg",
+    videoUrl: null,
+    gallery: [
+      "/projects/fort-myers-marble-kitchen-media/gallery-01.jpg",
+      "/projects/fort-myers-marble-kitchen-media/gallery-02.jpg",
+      "/projects/fort-myers-marble-kitchen-media/gallery-03.jpg",
+      "/projects/fort-myers-marble-kitchen-media/gallery-04.jpg",
+    ],
   },
   {
-    title: "Cape Coral Bath Suite",
-    slug: "cape-coral-bath-suite",
-    summary: "Primary bath refresh with waterproofing, tile, and spa-inspired fixtures.",
+    title: "Coastal Home — ZIP System & Lap Siding",
+    slug: "coastal-home-siding-rebuild",
+    summary:
+      "Elevated coastal residence weatherproofed with ZIP System sheathing and finished in durable lap siding.",
     description:
-      "A tired primary bath became a calm, spa-like suite. Scope included demolition, waterproofing, new tile work, vanity and fixture installation, and careful detailing around wet areas for long-term performance.",
-    location: "Cape Coral, FL",
+      "On a multi-story coastal home, we installed ZIP System rainscreen sheathing, managed openings and decks, and applied horizontal lap siding for a weather-ready shell. Progress photos capture boom-lift work and site logistics typical of Southwest Florida waterfront builds—executed with durability and schedule in mind.",
+    location: "Fort Myers Beach area, FL",
+    category: "Concrete & Exterior",
+    featured: true,
+    beforeUrl: "/projects/coastal-home-siding-rebuild/before.jpg",
+    afterUrl: "/projects/coastal-home-siding-rebuild/after.jpg",
+    coverUrl: "/projects/coastal-home-siding-rebuild/cover.jpg",
+    videoUrl: "/projects/coastal-home-siding-rebuild/walkthrough.mp4",
+    gallery: ["/projects/coastal-home-siding-rebuild/gallery-01.jpg"],
+  },
+  {
+    title: "Primary Spa Bath — Marble & Brushed Gold",
+    slug: "primary-spa-bath-gold-marble",
+    summary:
+      "Spa-inspired primary bath with blue marble-look walls, frameless glass, freestanding tub, and brushed-gold fixtures.",
+    description:
+      "A resort-quality primary suite featuring large-format statement tile, a frameless glass shower, and coordinated brushed-gold hardware. We focused on waterproofing, wet-area detailing, and clean transitions so the finished space feels luxurious and built to last in Florida humidity.",
+    location: "Southwest Florida",
     category: "Kitchen & Bath",
     featured: true,
-    beforeUrl:
-      "https://images.unsplash.com/photo-1552321554-5fefe8c9ef14?auto=format&fit=crop&w=1200&q=80",
-    afterUrl:
-      "https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=1200&q=80",
-    coverUrl:
-      "https://images.unsplash.com/photo-1604709177225-055f99402ea3?auto=format&fit=crop&w=1200&q=80",
+    beforeUrl: "/projects/primary-spa-bath-gold-marble/before.jpg",
+    afterUrl: "/projects/primary-spa-bath-gold-marble/after.jpg",
+    coverUrl: "/projects/primary-spa-bath-gold-marble/cover.jpg",
+    videoUrl: null,
+    gallery: [
+      "/projects/primary-spa-bath-gold-marble/gallery-01.jpg",
+      "/projects/primary-spa-bath-gold-marble/gallery-02.jpg",
+    ],
   },
   {
-    title: "Lehigh Acres Home Addition",
-    slug: "lehigh-acres-home-addition",
-    summary: "Family-room addition tied into existing structure with matching exterior finishes.",
+    title: "Open-Concept Luxury Living & Kitchen",
+    slug: "open-concept-luxury-living",
+    summary:
+      "Bright open-plan living with a fireplace feature wall, wide-plank floors, and a gourmet kitchen finish-out.",
     description:
-      "The owners needed more living space without relocating. We designed and built a rear addition, matched exterior materials, and completed interior finishes so the new room feels original to the home.",
-    location: "Lehigh Acres, FL",
-    category: "Additions",
+      "This residence brings together continuous light flooring, a floor-to-ceiling fireplace feature, and a chef’s kitchen with contrasting island cabinetry. Upper-level tray ceilings and refined finishes complete a clean modern Florida look—documented from flooring progress through the finished walkthrough.",
+    location: "Fort Myers / Southwest Florida",
+    category: "Residential Remodeling",
     featured: true,
-    beforeUrl:
-      "https://images.unsplash.com/photo-1560448204-e02f11c3d0e2?auto=format&fit=crop&w=1200&q=80",
-    afterUrl:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
-    coverUrl:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&w=1200&q=80",
+    beforeUrl: "/projects/open-concept-luxury-living/before.jpg",
+    afterUrl: "/projects/open-concept-luxury-living/after.jpg",
+    coverUrl: "/projects/open-concept-luxury-living/cover.jpg",
+    videoUrl: "/projects/open-concept-luxury-living/walkthrough.mp4",
+    gallery: ["/projects/open-concept-luxury-living/gallery-01.jpg"],
   },
   {
-    title: "Naples Office TI",
-    slug: "naples-office-ti",
-    summary: "Commercial tenant improvement for a professional office suite.",
+    title: "Multi-Family Exterior Refresh",
+    slug: "multifamily-exterior-refresh",
+    summary:
+      "Apartment complex exterior update with sage lap siding, contrasting board-and-batten, and crisp white trim.",
     description:
-      "A light commercial TI for a growing team in Naples. We framed partitions, upgraded finishes, coordinated MEP as needed, and delivered a clean, professional suite on a tight occupancy timeline.",
-    location: "Naples, FL",
+      "A multi-building residential complex received a coordinated exterior refresh—fresh paint, clean trim cut-ins, and a two-tone palette that modernizes the street presence. We worked around occupied units and mechanical zones to keep the site tidy and serviceable throughout the job.",
+    location: "Southwest Florida",
+    category: "Concrete & Exterior",
+    featured: false,
+    beforeUrl: "/projects/multifamily-exterior-refresh/before.jpg",
+    afterUrl: "/projects/multifamily-exterior-refresh/after.jpg",
+    coverUrl: "/projects/multifamily-exterior-refresh/cover.jpg",
+    videoUrl: null,
+    gallery: [
+      "/projects/multifamily-exterior-refresh/gallery-01.jpg",
+      "/projects/multifamily-exterior-refresh/gallery-02.jpg",
+      "/projects/multifamily-exterior-refresh/gallery-03.jpg",
+      "/projects/multifamily-exterior-refresh/gallery-04.jpg",
+    ],
+  },
+  {
+    title: "Commercial TI — Mezzanine Build-Out",
+    slug: "commercial-ti-mezzanine",
+    summary:
+      "Flex/commercial unit build-out with mezzanine framing, metal studs, and high-bay drywall.",
+    description:
+      "This tenant improvement turned a high-bay shell into a two-level workspace. Scope included metal stud partitions, mezzanine finishing, scissor-lift drywall at height, and mechanical coordination—executed with protected stairs and active site logistics for a clean handoff.",
+    location: "Southwest Florida",
     category: "Commercial",
     featured: false,
-    beforeUrl:
-      "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1200&q=80",
-    afterUrl:
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80",
-    coverUrl:
-      "https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1200&q=80",
+    beforeUrl: "/projects/commercial-ti-mezzanine/before.jpg",
+    afterUrl: "/projects/commercial-ti-mezzanine/after.jpg",
+    coverUrl: "/projects/commercial-ti-mezzanine/cover.jpg",
+    videoUrl: null,
+    gallery: [
+      "/projects/commercial-ti-mezzanine/gallery-01.jpg",
+      "/projects/commercial-ti-mezzanine/gallery-02.jpg",
+    ],
+  },
+  {
+    title: "Custom Accent Walls & Bath Details",
+    slug: "custom-living-accent-walls",
+    summary:
+      "Statement living-room feature walls plus modern bath upgrades—texture, millwork, and lighting that transform everyday rooms.",
+    description:
+      "Focused interior upgrades that elevate living spaces and baths: textured stone-look feature walls with backlit mirrors, wood-slat media walls, and coordinated lighting. Gallery photos also include related modern bath finishes completed in the same Southwest Florida portfolio.",
+    location: "Southwest Florida",
+    category: "Residential Remodeling",
+    featured: false,
+    beforeUrl: "/projects/custom-living-accent-walls/before.jpg",
+    afterUrl: "/projects/custom-living-accent-walls/after.jpg",
+    coverUrl: "/projects/custom-living-accent-walls/cover.jpg",
+    videoUrl: null,
+    gallery: [
+      "/projects/custom-living-accent-walls/gallery-01.jpg",
+      "/projects/custom-living-accent-walls/gallery-02.jpg",
+      "/projects/custom-living-accent-walls/gallery-03.jpg",
+      "/projects/custom-living-accent-walls/gallery-04.jpg",
+      "/projects/custom-living-accent-walls/gallery-05.jpg",
+    ],
   },
 ];
 
@@ -169,7 +266,7 @@ export const SEED_TESTIMONIALS = [
     name: "Maria R.",
     role: "Homeowner, Fort Myers",
     quote:
-      "Ariosa handled our kitchen remodel with clear communication and excellent craftsmanship. They finished on schedule and the space feels brand new.",
+      "Ariosa transformed our kitchen and living spaces with clear communication and excellent craftsmanship. The waterfall island still gets compliments every week.",
     rating: 5,
     order: 1,
   },
@@ -177,15 +274,15 @@ export const SEED_TESTIMONIALS = [
     name: "James T.",
     role: "General Contractor, Cape Coral",
     quote:
-      "Reliable partner on multi-trade jobs. They show up prepared, protect the schedule, and the workmanship holds up to inspection.",
+      "Reliable partner on multi-trade jobs. Their drywall and exterior crews show up prepared, protect the schedule, and the workmanship holds up to inspection.",
     rating: 5,
     order: 2,
   },
   {
     name: "Sofia L.",
-    role: "Homeowner, Naples",
+    role: "Homeowner, Southwest Florida",
     quote:
-      "From estimate to final walkthrough, everything was professional. Our addition looks seamless with the rest of the house.",
+      "From estimate to final walkthrough, everything was professional. Our spa bath and accent walls look like a resort suite—and they finished clean.",
     rating: 5,
     order: 3,
   },
@@ -204,6 +301,7 @@ export type PublicProject = {
   coverUrl: string | null;
   beforeUrl: string | null;
   afterUrl: string | null;
+  videoUrl: string | null;
   images: { id: string; url: string; alt: string | null; type: string; order: number }[];
 };
 
@@ -241,36 +339,53 @@ export const FALLBACK_SERVICES: PublicService[] = SEED_SERVICES.map((s, i) => ({
   published: true,
 }));
 
-export const FALLBACK_PROJECTS: PublicProject[] = SEED_PROJECTS.map((p, i) => ({
-  id: `seed-project-${i}`,
-  title: p.title,
-  slug: p.slug,
-  summary: p.summary,
-  description: p.description,
-  location: p.location,
-  category: p.category,
-  featured: p.featured,
-  published: true,
-  coverUrl: p.coverUrl,
-  beforeUrl: p.beforeUrl,
-  afterUrl: p.afterUrl,
-  images: [
-    {
+export const FALLBACK_PROJECTS: PublicProject[] = SEED_PROJECTS.map((p, i) => {
+  const images: PublicProject["images"] = [];
+  let order = 0;
+  if (p.beforeUrl) {
+    images.push({
       id: `seed-before-${i}`,
       url: p.beforeUrl,
       alt: `${p.title} before`,
       type: "before",
-      order: 0,
-    },
-    {
+      order: order++,
+    });
+  }
+  if (p.afterUrl) {
+    images.push({
       id: `seed-after-${i}`,
       url: p.afterUrl,
       alt: `${p.title} after`,
       type: "after",
-      order: 1,
-    },
-  ],
-}));
+      order: order++,
+    });
+  }
+  for (const [gi, url] of (p.gallery ?? []).entries()) {
+    images.push({
+      id: `seed-gallery-${i}-${gi}`,
+      url,
+      alt: `${p.title} gallery ${gi + 1}`,
+      type: "gallery",
+      order: order++,
+    });
+  }
+  return {
+    id: `seed-project-${i}`,
+    title: p.title,
+    slug: p.slug,
+    summary: p.summary,
+    description: p.description,
+    location: p.location,
+    category: p.category,
+    featured: p.featured,
+    published: true,
+    coverUrl: p.coverUrl,
+    beforeUrl: p.beforeUrl,
+    afterUrl: p.afterUrl,
+    videoUrl: p.videoUrl ?? null,
+    images,
+  };
+});
 
 export const FALLBACK_TESTIMONIALS: PublicTestimonial[] = SEED_TESTIMONIALS.map(
   (t, i) => ({
