@@ -27,7 +27,7 @@ export default async function AdminMediaPage() {
         <p className="mt-1 text-sm text-muted">
           {blobOk
             ? "Uploads go to Vercel Blob and can be pasted into project/service forms."
-            : "No BLOB_READ_WRITE_TOKEN — files save to /uploads (works locally; add Vercel Blob for production)."}
+            : "No Blob store yet — photos are saved in your Neon database (max ~2.5MB each). Or create Blob: Vercel → Storage → Blob."}
         </p>
         <div className="mt-4">
           <ImageUploadField name="unused" label="Upload" />
