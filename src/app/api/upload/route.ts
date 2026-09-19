@@ -23,25 +23,46 @@ export async function POST(request: Request) {
   const mimeType = file.type || "application/octet-stream";
   const buffer = Buffer.from(await file.arrayBuffer());
 
-  // Prefer Vercel Blob when configured
-  if (process.env.BLOB_READ_WRITE_TOKEN) {
-    const blob = await put(key, buffer, {
-      access: "public",
-      contentType: mimeType,
-    });
+  // Prefer Vercel Blob when configured (token and/or store id from Vercel Storage)
+  const blobReady = Boolean(
+    process.env.BLOB_READ_WRITE_TOKEN ||
+      process.env.BLOB_READ_WRITE_TOKEN_STORE_ID ||
+      process.env.BLOB_STORE_ID
+  );
+
+  if (blobReady) {
+    const storeId =
+      process.env.BLOB_READ_WRITE_TOKEN_STORE_ID ||
+      process.env.BLOB_STORE_ID ||
+      undefined;
+
     try {
-      await prisma.media.create({
-        data: {
-          url: blob.url,
-          filename: file.name,
-          alt: file.name,
-          mimeType,
-        },
+      const blob = await put(key, buffer, {
+        // Public URLs so project photos work on the live site
+        access: "public",
+        contentType: mimeType,
+        ...(storeId ? { storeId } : {}),
+        ...(process.env.BLOB_READ_WRITE_TOKEN
+          ? { token: process.env.BLOB_READ_WRITE_TOKEN }
+          : {}),
       });
-    } catch {
-      // index optional
+      try {
+        await prisma.media.create({
+          data: {
+            url: blob.url,
+            filename: file.name,
+            alt: file.name,
+            mimeType,
+          },
+        });
+      } catch {
+        // index optional
+      }
+      return NextResponse.json({ url: blob.url });
+    } catch (err) {
+      console.error("[upload:blob]", err);
+      // Fall through to Neon if Blob rejects (e.g. private-only store)
     }
-    return NextResponse.json({ url: blob.url });
   }
 
   // Neon fallback — image bytes live in Postgres, served via /api/media/[id]
