@@ -24,6 +24,11 @@ export default async function EditProjectPage({
 
   const beforeUrl = project.images.find((i) => i.type === "before")?.url;
   const afterUrl = project.images.find((i) => i.type === "after")?.url;
+  const galleryUrls = project.images
+    .filter((i) => i.type === "gallery")
+    .sort((a, b) => a.order - b.order)
+    .map((i) => i.url)
+    .join("\n");
 
   return (
     <AdminShell title={`Edit: ${project.title}`}>
@@ -41,6 +46,8 @@ export default async function EditProjectPage({
           coverUrl: project.coverUrl,
           beforeUrl,
           afterUrl,
+          videoUrl: project.videoUrl,
+          galleryUrls,
         }}
       />
     </AdminShell>

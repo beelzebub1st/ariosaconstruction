@@ -56,6 +56,7 @@ model SiteSettings {
   aboutLong       String  @default("Founded to serve homeowners, contractors, and general contractors across South Florida, Ariosa & Constructions LLC brings disciplined project management and skilled workmanship to every job—from remodels and additions to full general contracting.")
   heroHeadline    String  @default("Building Dreams. Delivering Quality.")
   heroSubheadline String  @default("Trusted construction partners for homeowners, contractors, and GCs across South Florida.")
+  heroSupport     String  @default("Serving homeowners, contractors, and general contractors with skilled crews, quality workmanship, and dependable project execution.")
   heroImageUrl    String?
   trustBadges     String  @default("Licensed & Insured|Quality Craftsmanship|On-Time Delivery")
   yearsExperience String  @default("10+")
@@ -89,9 +90,22 @@ model Project {
   featured    Boolean        @default(false)
   published   Boolean        @default(true)
   coverUrl    String?
+  videoUrl    String?
   createdAt   DateTime       @default(now())
   updatedAt   DateTime       @updatedAt
   images      ProjectImage[]
+}
+
+model ServiceArea {
+  id        String   @id @default(cuid())
+  name      String   @unique
+  lat       Float
+  lng       Float
+  hub       Boolean  @default(false)
+  order     Int      @default(0)
+  published Boolean  @default(true)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model ProjectImage {

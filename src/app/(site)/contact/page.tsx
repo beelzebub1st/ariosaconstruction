@@ -5,7 +5,7 @@ import { ContactServiceMap } from "@/components/site/ContactServiceMap";
 import { EstimateButton } from "@/components/estimate/EstimateButton";
 import { PageHero } from "@/components/site/PageHero";
 import { Reveal, AnimatedLine } from "@/components/site/Motion";
-import { getSettings } from "@/lib/content";
+import { getServiceAreas, getSettings } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Contact Us",
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function ContactPage() {
-  const settings = await getSettings();
+  const [settings, areas] = await Promise.all([getSettings(), getServiceAreas()]);
 
   return (
     <>
@@ -66,6 +66,7 @@ export default async function ContactPage() {
       <ContactServiceMap
         address={settings.address}
         serviceArea={settings.serviceArea}
+        locations={areas}
       />
     </>
   );

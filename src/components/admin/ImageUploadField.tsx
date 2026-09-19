@@ -6,10 +6,12 @@ export function ImageUploadField({
   name,
   label,
   defaultValue,
+  accept = "image/*",
 }: {
   name: string;
   label: string;
   defaultValue?: string | null;
+  accept?: string;
 }) {
   const [url, setUrl] = useState(defaultValue || "");
   const [uploading, setUploading] = useState(false);
@@ -33,30 +35,35 @@ export function ImageUploadField({
     }
   }
 
+  const isVideo = /\.(mp4|webm|mov)(\?|$)/i.test(url) || url.includes("video");
+
   return (
     <label className="block text-sm">
       <span className="mb-1.5 block font-medium text-navy">{label}</span>
       <input type="hidden" name={name} value={url} />
       <input
-        type="url"
+        type="text"
         value={url}
         onChange={(e) => setUrl(e.target.value)}
-        placeholder="https://… or upload below"
+        placeholder="Paste URL or upload below"
         className="w-full rounded-md border border-navy/15 px-3 py-2.5"
       />
       <div className="mt-2 flex flex-wrap items-center gap-2">
         <input
           type="file"
-          accept="image/*"
+          accept={accept}
           onChange={(e) => onFile(e.target.files?.[0] || null)}
           className="text-xs"
         />
         {uploading && <span className="text-xs text-muted">Uploading…</span>}
       </div>
       {error && <p className="mt-1 text-xs text-brick">{error}</p>}
-      {url && (
+      {url && !isVideo && (
         // eslint-disable-next-line @next/next/no-img-element
         <img src={url} alt="" className="mt-2 h-24 w-auto rounded object-cover" />
+      )}
+      {url && isVideo && (
+        <video src={url} className="mt-2 h-24 w-auto rounded" controls muted />
       )}
     </label>
   );

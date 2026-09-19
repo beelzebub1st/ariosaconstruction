@@ -1,23 +1,33 @@
 import { AdminShell } from "@/components/admin/AdminShell";
 import { ImageUploadField } from "@/components/admin/ImageUploadField";
+import { deleteMedia } from "@/lib/actions/admin";
+import { isBlobConfigured } from "@/lib/db";
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
 export default async function AdminMediaPage() {
-  let media: { id: string; url: string; filename: string | null; createdAt: Date }[] = [];
+  let media: { id: string; url: string; filename: string | null; createdAt: Date }[] =
+    [];
   try {
-    media = await prisma.media.findMany({ orderBy: { createdAt: "desc" }, take: 100 });
+    media = await prisma.media.findMany({
+      orderBy: { createdAt: "desc" },
+      take: 100,
+    });
   } catch {
     media = [];
   }
+
+  const blobOk = isBlobConfigured();
 
   return (
     <AdminShell title="Media">
       <div className="mb-8 max-w-xl bg-white p-5 ring-1 ring-navy/10">
         <h2 className="font-display text-lg font-semibold text-navy">Upload image</h2>
         <p className="mt-1 text-sm text-muted">
-          Requires BLOB_READ_WRITE_TOKEN on Vercel. You can also paste image URLs in project forms.
+          {blobOk
+            ? "Uploads go to Vercel Blob and can be pasted into project/service forms."
+            : "No BLOB_READ_WRITE_TOKEN — files save to /uploads (works locally; add Vercel Blob for production)."}
         </p>
         <div className="mt-4">
           <ImageUploadField name="unused" label="Upload" />
@@ -31,8 +41,23 @@ export default async function AdminMediaPage() {
           {media.map((m) => (
             <div key={m.id} className="bg-white p-3 ring-1 ring-navy/10">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={m.url} alt={m.filename || ""} className="h-40 w-full object-cover" />
+              <img
+                src={m.url}
+                alt={m.filename || ""}
+                className="h-40 w-full object-cover"
+              />
               <p className="mt-2 break-all text-xs text-muted">{m.url}</p>
+              <form
+                action={async () => {
+                  "use server";
+                  await deleteMedia(m.id);
+                }}
+                className="mt-2"
+              >
+                <button type="submit" className="text-xs font-semibold text-brick">
+                  Remove from library
+                </button>
+              </form>
             </div>
           ))}
         </div>

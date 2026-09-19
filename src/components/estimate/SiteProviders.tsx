@@ -8,15 +8,17 @@ export function SiteProviders({
   children,
   services,
   phone,
+  serviceAreas,
 }: {
   children: React.ReactNode;
   services: PublicService[];
   phone: string;
+  serviceAreas: string[];
 }) {
   return (
     <EstimateProvider>
       {children}
-      <EstimateModal services={services} phone={phone} />
+      <EstimateModal services={services} phone={phone} serviceAreas={serviceAreas} />
     </EstimateProvider>
   );
 }

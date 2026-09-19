@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { GalleryUrlsField } from "@/components/admin/GalleryUrlsField";
 import { ImageUploadField } from "@/components/admin/ImageUploadField";
 import { saveProject } from "@/lib/actions/admin";
 
@@ -18,6 +19,8 @@ export function ProjectForm({
     coverUrl?: string | null;
     beforeUrl?: string | null;
     afterUrl?: string | null;
+    videoUrl?: string | null;
+    galleryUrls?: string;
   };
 }) {
   return (
@@ -48,18 +51,29 @@ export function ProjectForm({
       <Field name="category" label="Category" required defaultValue={defaults?.category} />
       <ImageUploadField
         name="beforeUrl"
-        label="Before image URL"
+        label="Before image"
         defaultValue={defaults?.beforeUrl}
       />
       <ImageUploadField
         name="afterUrl"
-        label="After image URL"
+        label="After image"
         defaultValue={defaults?.afterUrl}
       />
       <ImageUploadField
         name="coverUrl"
-        label="Cover image URL"
+        label="Cover image"
         defaultValue={defaults?.coverUrl}
+      />
+      <GalleryUrlsField
+        name="galleryUrls"
+        label="Gallery photos (one URL per line, or upload multiple)"
+        defaultValue={defaults?.galleryUrls}
+      />
+      <ImageUploadField
+        name="videoUrl"
+        label="Walkthrough video (mp4 URL or upload)"
+        defaultValue={defaults?.videoUrl}
+        accept="video/mp4,video/webm,video/*"
       />
       <label className="flex items-center gap-2 text-sm">
         <input type="checkbox" name="featured" defaultChecked={defaults?.featured} />

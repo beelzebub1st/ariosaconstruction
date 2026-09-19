@@ -4,21 +4,28 @@ import { useEffect, useId, useRef, useState } from "react";
 import type { Map as LeafletMap, Marker } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { cn } from "@/lib/utils";
-import { SERVICE_AREA_LOCATIONS } from "@/lib/service-areas";
+import type { PublicServiceArea } from "@/lib/seed-data";
 
 type Props = {
   className?: string;
+  locations: PublicServiceArea[];
   activeCity?: string | null;
   onSelectCity?: (city: string) => void;
 };
 
-export function ServiceAreaMap({ className, activeCity, onSelectCity }: Props) {
+export function ServiceAreaMap({
+  className,
+  locations,
+  activeCity,
+  onSelectCity,
+}: Props) {
   const mapId = useId().replace(/:/g, "");
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<LeafletMap | null>(null);
   const markersRef = useRef<Map<string, Marker>>(new Map());
   const onSelectRef = useRef(onSelectCity);
   const [ready, setReady] = useState(false);
+  const locationsKey = locations.map((c) => c.name).join("|");
 
   onSelectRef.current = onSelectCity;
 
@@ -28,7 +35,12 @@ export function ServiceAreaMap({ className, activeCity, onSelectCity }: Props) {
     async function init() {
       const L = (await import("leaflet")).default;
 
-      if (cancelled || !containerRef.current || mapRef.current) return;
+      if (cancelled || !containerRef.current) return;
+
+      if (mapRef.current) {
+        mapRef.current.remove();
+        mapRef.current = null;
+      }
 
       const map = L.map(containerRef.current, {
         scrollWheelZoom: false,
@@ -46,8 +58,8 @@ export function ServiceAreaMap({ className, activeCity, onSelectCity }: Props) {
       const bounds = L.latLngBounds([]);
       const markers = new Map<string, Marker>();
 
-      for (const city of SERVICE_AREA_LOCATIONS) {
-        const isHub = Boolean("hub" in city && city.hub);
+      for (const city of locations) {
+        const isHub = city.hub;
         const icon = L.divIcon({
           className: "ariosa-map-marker",
           html: `<button type="button" class="ariosa-pin ${isHub ? "ariosa-pin--hub" : ""}" aria-label="${city.name}">
@@ -64,7 +76,9 @@ export function ServiceAreaMap({ className, activeCity, onSelectCity }: Props) {
         bounds.extend([city.lat, city.lng]);
       }
 
-      map.fitBounds(bounds.pad(0.2));
+      if (locations.length) {
+        map.fitBounds(bounds.pad(0.2));
+      }
       mapRef.current = map;
       markersRef.current = markers;
       setReady(true);
@@ -79,12 +93,13 @@ export function ServiceAreaMap({ className, activeCity, onSelectCity }: Props) {
       mapRef.current = null;
       markersRef.current = new Map();
     };
-  }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [locationsKey]);
 
   useEffect(() => {
     if (!ready || !activeCity || !mapRef.current) return;
     const marker = markersRef.current.get(activeCity);
-    const city = SERVICE_AREA_LOCATIONS.find((c) => c.name === activeCity);
+    const city = locations.find((c) => c.name === activeCity);
     if (!marker || !city) return;
 
     mapRef.current.flyTo([city.lat, city.lng], Math.max(mapRef.current.getZoom(), 11), {
@@ -95,7 +110,7 @@ export function ServiceAreaMap({ className, activeCity, onSelectCity }: Props) {
       const el = m.getElement()?.querySelector(".ariosa-pin");
       el?.classList.toggle("is-active", name === activeCity);
     }
-  }, [activeCity, ready]);
+  }, [activeCity, ready, locations]);
 
   return (
     <div
@@ -116,7 +131,7 @@ export function ServiceAreaMap({ className, activeCity, onSelectCity }: Props) {
       ) : null}
       <div className="pointer-events-none absolute bottom-3 left-3 sm:bottom-4 sm:left-4">
         <span className="bg-navy px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-[0.16em] text-gold">
-          {SERVICE_AREA_LOCATIONS.length} cities · SW Florida
+          {locations.length} cities · SW Florida
         </span>
       </div>
     </div>

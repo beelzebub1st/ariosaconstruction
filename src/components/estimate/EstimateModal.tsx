@@ -18,7 +18,6 @@ import { useEstimate } from "@/components/estimate/EstimateContext";
 import { submitLead } from "@/lib/actions/leads";
 import { cn, phoneHref } from "@/lib/utils";
 import type { PublicService } from "@/lib/seed-data";
-import { SERVICE_AREAS } from "@/lib/service-areas";
 
 const STEPS = ["You", "Services", "Project", "Contact"] as const;
 
@@ -55,9 +54,10 @@ const budgets = [
 type Props = {
   services: PublicService[];
   phone: string;
+  serviceAreas: string[];
 };
 
-export function EstimateModal({ services, phone }: Props) {
+export function EstimateModal({ services, phone, serviceAreas }: Props) {
   const { open, closeEstimate, prefill } = useEstimate();
   const pathname = usePathname();
   const [step, setStep] = useState(0);
@@ -382,7 +382,7 @@ export function EstimateModal({ services, phone }: Props) {
                             className="w-full border border-navy/15 bg-white px-3.5 py-3 outline-none focus:border-navy"
                           />
                           <datalist id="service-areas">
-                            {SERVICE_AREAS.map((city) => (
+                            {serviceAreas.map((city) => (
                               <option key={city} value={city} />
                             ))}
                           </datalist>

@@ -22,6 +22,7 @@ export const DEFAULT_SETTINGS: SiteSettings = {
   heroHeadline: "Building Dreams. Delivering Quality.",
   heroSubheadline:
     "Reliable Construction & Subcontracting Services Across Southwest Florida",
+  heroSupport: HERO_SUPPORT,
   heroImageUrl: null,
   trustBadges: "Insured|Quality Craftsmanship|Reliable Crews|Southwest Florida",
   yearsExperience: "Experienced Construction Team",
@@ -382,6 +383,15 @@ export type PublicTestimonial = {
   quote: string;
   rating: number;
   published: boolean;
+  order: number;
+};
+
+export type PublicServiceArea = {
+  id: string;
+  name: string;
+  lat: number;
+  lng: number;
+  hub: boolean;
   order: number;
 };
 

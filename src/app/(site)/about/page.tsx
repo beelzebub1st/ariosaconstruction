@@ -4,7 +4,7 @@ import { CtaBand } from "@/components/site/CtaBand";
 import { EstimateButton } from "@/components/estimate/EstimateButton";
 import { ServiceAreas } from "@/components/site/ServiceAreas";
 import { Reveal, Stagger, StaggerItem, AnimatedLine } from "@/components/site/Motion";
-import { getSettings } from "@/lib/content";
+import { getServiceAreas, getSettings } from "@/lib/content";
 import { ArrowUpRight } from "lucide-react";
 
 export const metadata: Metadata = {
@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default async function AboutPage() {
-  const settings = await getSettings();
+  const [settings, areas] = await Promise.all([getSettings(), getServiceAreas()]);
 
   const values = [
     { n: "01", t: "Clarity", d: "Estimates you can plan around—not vague ranges that shift mid-job." },
@@ -158,7 +158,11 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <ServiceAreas serviceArea={settings.serviceArea} variant="dark" />
+      <ServiceAreas
+        serviceArea={settings.serviceArea}
+        locations={areas}
+        variant="dark"
+      />
 
       <CtaBand
         phone={settings.phone}

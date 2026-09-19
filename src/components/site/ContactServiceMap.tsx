@@ -4,17 +4,20 @@ import { useState } from "react";
 import { MapPin } from "lucide-react";
 import { AnimatedLine, Reveal, Stagger, StaggerItem } from "@/components/site/Motion";
 import { ServiceAreaMap } from "@/components/site/ServiceAreaMap";
-import { SERVICE_AREA_LOCATIONS } from "@/lib/service-areas";
+import type { PublicServiceArea } from "@/lib/seed-data";
 import { cn } from "@/lib/utils";
 
 export function ContactServiceMap({
   address,
   serviceArea,
+  locations,
 }: {
   address: string;
   serviceArea: string;
+  locations: PublicServiceArea[];
 }) {
-  const [activeCity, setActiveCity] = useState<string | null>("Fort Myers");
+  const hub = locations.find((c) => c.hub)?.name || locations[0]?.name || null;
+  const [activeCity, setActiveCity] = useState<string | null>(hub);
 
   return (
     <>
@@ -28,7 +31,7 @@ export function ContactServiceMap({
             <AnimatedLine className="mt-5 w-24" />
           </Reveal>
           <Stagger className="mt-10 grid gap-x-10 gap-y-0 sm:grid-cols-2 lg:grid-cols-5">
-            {SERVICE_AREA_LOCATIONS.map((city, i) => {
+            {locations.map((city, i) => {
               const active = activeCity === city.name;
               return (
                 <StaggerItem key={city.name}>
@@ -79,7 +82,11 @@ export function ContactServiceMap({
             </p>
           </Reveal>
           <Reveal delay={0.08}>
-            <ServiceAreaMap activeCity={activeCity} onSelectCity={setActiveCity} />
+            <ServiceAreaMap
+              locations={locations}
+              activeCity={activeCity}
+              onSelectCity={setActiveCity}
+            />
           </Reveal>
           <p className="mt-4 text-sm text-muted">
             Tap a pin or city name to zoom in. Fort Myers is our hub—surrounding

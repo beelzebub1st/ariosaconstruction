@@ -40,6 +40,8 @@ export const projectSchema = z.object({
   coverUrl: z.string().optional(),
   beforeUrl: z.string().optional(),
   afterUrl: z.string().optional(),
+  videoUrl: z.string().optional(),
+  galleryUrls: z.string().optional(),
 });
 
 export const testimonialSchema = z.object({
@@ -63,12 +65,22 @@ export const siteSettingsSchema = z.object({
   aboutLong: z.string().min(20),
   heroHeadline: z.string().min(2),
   heroSubheadline: z.string().min(2),
+  heroSupport: z.string().min(2),
   heroImageUrl: z.string().optional().nullable(),
   trustBadges: z.string().min(2),
   yearsExperience: z.string().min(1),
   facebookUrl: z.string().optional().nullable(),
   instagramUrl: z.string().optional().nullable(),
   googleUrl: z.string().optional().nullable(),
+});
+
+export const serviceAreaSchema = z.object({
+  name: z.string().min(2),
+  lat: z.coerce.number(),
+  lng: z.coerce.number(),
+  hub: z.coerce.boolean().default(false),
+  order: z.coerce.number().default(0),
+  published: z.coerce.boolean().default(true),
 });
 
 export const loginSchema = z.object({

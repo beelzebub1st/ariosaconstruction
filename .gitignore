@@ -51,3 +51,7 @@ AGENTS.md
 CLAUDE.md
 tmp-ariosa-review/
 tmp-img/
+
+# local uploads (dev fallback without Vercel Blob)
+/public/uploads/*
+!/public/uploads/.gitkeep

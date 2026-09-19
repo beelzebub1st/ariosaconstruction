@@ -4,7 +4,6 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Mail, MapPin, Phone } from "lucide-react";
 import { EstimateButton } from "@/components/estimate/EstimateButton";
-import { SERVICE_AREAS } from "@/lib/service-areas";
 import { mailtoHref, phoneHref } from "@/lib/utils";
 
 export function Footer({
@@ -13,12 +12,14 @@ export function Footer({
   phone,
   email,
   serviceArea,
+  cities,
 }: {
   companyName: string;
   tagline: string;
   phone: string;
   email: string;
   serviceArea: string;
+  cities: string[];
 }) {
   return (
     <footer className="mt-auto bg-navy-dark text-white">
@@ -118,7 +119,7 @@ export function Footer({
             Service areas
           </h3>
           <ul className="mt-5 columns-2 gap-x-6 space-y-2 text-sm text-white/70">
-            {SERVICE_AREAS.map((city) => (
+            {cities.map((city) => (
               <li key={city} className="break-inside-avoid">
                 {city}
               </li>

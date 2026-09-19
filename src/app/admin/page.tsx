@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { AdminShell } from "@/components/admin/AdminShell";
+import { isBlobConfigured, isDatabaseConfigured } from "@/lib/db";
 import { prisma } from "@/lib/prisma";
 
 export const dynamic = "force-dynamic";
@@ -28,6 +29,9 @@ export default async function AdminDashboardPage() {
     dbOk = false;
   }
 
+  const dbConfigured = isDatabaseConfigured();
+  const blobOk = isBlobConfigured();
+
   const cards = [
     { label: "New leads", value: newLeads, href: "/admin/leads", hint: "Estimate requests" },
     { label: "Total leads", value: totalLeads, href: "/admin/leads", hint: "All inquiries" },
@@ -39,12 +43,12 @@ export default async function AdminDashboardPage() {
     {
       href: "/admin/site-settings",
       title: "Site Settings",
-      body: "Phone, email, address, map embed, hero headline, about copy, trust badges.",
+      body: "Phone, email, address, map embed, hero copy, about text, social links.",
     },
     {
       href: "/admin/projects",
       title: "Projects",
-      body: "Add/edit projects, before & after photos, featured flag, publish/unpublish.",
+      body: "Add projects with before/after, gallery photos, walkthrough video, featured flag.",
     },
     {
       href: "/admin/services",
@@ -54,7 +58,12 @@ export default async function AdminDashboardPage() {
     {
       href: "/admin/testimonials",
       title: "Testimonials",
-      body: "Customer quotes shown on the homepage.",
+      body: "Add, edit, and delete customer quotes on the homepage.",
+    },
+    {
+      href: "/admin/service-areas",
+      title: "Service Areas",
+      body: "Cities on the map and footer — add/remove Southwest Florida coverage.",
     },
     {
       href: "/admin/leads",
@@ -64,39 +73,44 @@ export default async function AdminDashboardPage() {
     {
       href: "/admin/media",
       title: "Media",
-      body: "Upload images to Vercel Blob (needs BLOB_READ_WRITE_TOKEN).",
+      body: "Upload photos (Vercel Blob in production, or local /uploads in development).",
     },
   ];
 
   return (
     <AdminShell title="Dashboard">
-      <div className="mb-8 border border-navy/10 bg-white p-5">
-        <h2 className="font-display text-lg font-bold text-navy">
-          How to manage this website
-        </h2>
-        <p className="mt-2 text-sm text-muted">
+      <div className="mb-8 space-y-3 border border-navy/10 bg-white p-5">
+        <h2 className="font-display text-lg font-bold text-navy">CMS status</h2>
+        <ul className="space-y-2 text-sm">
+          <li>
+            Database:{" "}
+            <span className={dbOk ? "font-semibold text-navy" : "font-semibold text-brick"}>
+              {dbOk
+                ? "Connected — admin saves update the live site."
+                : dbConfigured
+                  ? "Configured but unreachable — check DATABASE_URL / Neon."
+                  : "Not connected — add Neon DATABASE_URL in Vercel, then db:push + db:seed."}
+            </span>
+          </li>
+          <li>
+            Photo uploads:{" "}
+            <span className={blobOk ? "font-semibold text-navy" : "font-semibold text-muted"}>
+              {blobOk
+                ? "Vercel Blob ready."
+                : "No BLOB_READ_WRITE_TOKEN — local /uploads works in dev; add Blob for production uploads."}
+            </span>
+          </li>
+        </ul>
+        <p className="text-sm text-muted">
           Login:{" "}
-          <code className="bg-stone px-1.5 py-0.5 text-navy">
-            /admin/login
-          </code>{" "}
-          · Default:{" "}
+          <code className="bg-stone px-1.5 py-0.5 text-navy">/admin/login</code> · Default:{" "}
           <code className="bg-stone px-1.5 py-0.5 text-navy">
             admin@ariosaconstructions.com
           </code>{" "}
           /{" "}
-          <code className="bg-stone px-1.5 py-0.5 text-navy">
-            ariosa-admin-change-me
-          </code>
+          <code className="bg-stone px-1.5 py-0.5 text-navy">ariosa-admin-change-me</code>
         </p>
-        <p className="mt-2 text-sm text-muted">
-          Database status:{" "}
-          <span className={dbOk ? "font-semibold text-navy" : "font-semibold text-brick"}>
-            {dbOk
-              ? "Connected — CMS saves will update the live site."
-              : "Hardcoded mode — public site uses src/lib/seed-data.ts. Set USE_DATABASE=true, DATABASE_URL, then db:push + db:seed to enable CMS."}
-          </span>
-        </p>
-        <Link href="/" className="mt-3 inline-block text-sm font-semibold text-brick">
+        <Link href="/" className="inline-block text-sm font-semibold text-brick">
           ← View public website
         </Link>
       </div>
@@ -134,9 +148,7 @@ export default async function AdminDashboardPage() {
 
       <div className="mt-8 bg-white p-5 ring-1 ring-navy/10">
         <div className="flex items-center justify-between">
-          <h2 className="font-display text-xl font-semibold text-navy">
-            Recent leads
-          </h2>
+          <h2 className="font-display text-xl font-semibold text-navy">Recent leads</h2>
           <Link href="/admin/leads" className="text-sm font-semibold text-brick">
             View all
           </Link>

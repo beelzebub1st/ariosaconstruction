@@ -6,6 +6,7 @@ import {
   SEED_SERVICES,
   SEED_TESTIMONIALS,
 } from "../src/lib/seed-data";
+import { SERVICE_AREA_LOCATIONS } from "../src/lib/service-areas";
 
 const prisma = new PrismaClient();
 
@@ -36,18 +37,19 @@ async function main() {
   }
 
   for (const project of SEED_PROJECTS) {
-    const { beforeUrl, afterUrl, coverUrl, gallery, videoUrl: _videoUrl, ...rest } =
-      project;
+    const { beforeUrl, afterUrl, coverUrl, gallery, videoUrl, ...rest } = project;
     const saved = await prisma.project.upsert({
       where: { slug: project.slug },
       update: {
         ...rest,
         coverUrl,
+        videoUrl: videoUrl ?? null,
         published: true,
       },
       create: {
         ...rest,
         coverUrl,
+        videoUrl: videoUrl ?? null,
         published: true,
       },
     });
@@ -97,9 +99,30 @@ async function main() {
   }
 
   const existingTestimonials = await prisma.testimonial.count();
-  if (existingTestimonials === 0) {
+  if (existingTestimonials === 0 && SEED_TESTIMONIALS.length) {
     await prisma.testimonial.createMany({
       data: SEED_TESTIMONIALS.map((t) => ({ ...t, published: true })),
+    });
+  }
+
+  for (const [i, city] of SERVICE_AREA_LOCATIONS.entries()) {
+    await prisma.serviceArea.upsert({
+      where: { name: city.name },
+      update: {
+        lat: city.lat,
+        lng: city.lng,
+        hub: Boolean("hub" in city && city.hub),
+        order: i,
+        published: true,
+      },
+      create: {
+        name: city.name,
+        lat: city.lat,
+        lng: city.lng,
+        hub: Boolean("hub" in city && city.hub),
+        order: i,
+        published: true,
+      },
     });
   }
 

@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { MapPin } from "lucide-react";
-import { SERVICE_AREA_LOCATIONS } from "@/lib/service-areas";
 import { ServiceAreaMap } from "@/components/site/ServiceAreaMap";
 import {
   Reveal,
@@ -10,17 +9,21 @@ import {
   Stagger,
   StaggerItem,
 } from "@/components/site/Motion";
+import type { PublicServiceArea } from "@/lib/seed-data";
 import { cn } from "@/lib/utils";
 
 export function ServiceAreas({
   serviceArea,
+  locations,
   variant = "light",
 }: {
   serviceArea?: string;
+  locations: PublicServiceArea[];
   variant?: "light" | "dark";
 }) {
   const isDark = variant === "dark";
-  const [activeCity, setActiveCity] = useState<string | null>("Fort Myers");
+  const hub = locations.find((c) => c.hub)?.name || locations[0]?.name || null;
+  const [activeCity, setActiveCity] = useState<string | null>(hub);
 
   return (
     <section
@@ -43,11 +46,15 @@ export function ServiceAreas({
         />
 
         <Reveal className="mt-10">
-          <ServiceAreaMap activeCity={activeCity} onSelectCity={setActiveCity} />
+          <ServiceAreaMap
+            locations={locations}
+            activeCity={activeCity}
+            onSelectCity={setActiveCity}
+          />
         </Reveal>
 
         <Stagger className="mt-10 grid gap-x-8 gap-y-1 sm:grid-cols-2 lg:grid-cols-5">
-          {SERVICE_AREA_LOCATIONS.map((city, i) => {
+          {locations.map((city, i) => {
             const active = activeCity === city.name;
             return (
               <StaggerItem key={city.name}>
@@ -81,7 +88,7 @@ export function ServiceAreas({
                     )}
                   >
                     {city.name}
-                    {"hub" in city && city.hub ? (
+                    {city.hub ? (
                       <span className="ml-2 text-[10px] font-bold uppercase tracking-[0.14em] text-gold">
                         Hub
                       </span>

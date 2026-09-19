@@ -16,19 +16,20 @@ import { ButtonLink } from "@/components/ui/Button";
 import { ServiceAreas } from "@/components/site/ServiceAreas";
 import {
   getProjects,
+  getServiceAreas,
   getServices,
   getSettings,
   getTestimonials,
 } from "@/lib/content";
-import { HERO_SUPPORT } from "@/lib/seed-data";
 import { phoneHref, smsHref, parseTrustBadges } from "@/lib/utils";
 
 export default async function HomePage() {
-  const [settings, services, projects, testimonials] = await Promise.all([
+  const [settings, services, projects, testimonials, areas] = await Promise.all([
     getSettings(),
     getServices(),
     getProjects({ featuredOnly: true }),
     getTestimonials(),
+    getServiceAreas(),
   ]);
 
   const featured = projects[0];
@@ -49,7 +50,7 @@ export default async function HomePage() {
         companyName={settings.companyName}
         headline={settings.heroHeadline}
         subheadline={settings.heroSubheadline}
-        supportText={HERO_SUPPORT}
+        supportText={settings.heroSupport}
         phone={settings.phone}
         heroImageUrl={settings.heroImageUrl}
       />
@@ -328,7 +329,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      <ServiceAreas serviceArea={settings.serviceArea} />
+      <ServiceAreas serviceArea={settings.serviceArea} locations={areas} />
 
       <CtaBand
         phone={settings.phone}
