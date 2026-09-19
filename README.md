@@ -23,16 +23,14 @@ Admin UI is at `/admin` (login works from env even without a database).
 
 | Variable | Value |
 |----------|--------|
-| `DATABASE_URL` | Neon connection string (`?sslmode=require`) |
-| `USE_DATABASE` | Leave unset, or `true` (set `false` only to force seed content) |
+| `DATABASE_URL` | Neon URL to database **`ariosaconstruction`** (`?sslmode=require`) |
+| `USE_DATABASE` | `true` |
 | `AUTH_SECRET` | Long random string |
-| `ADMIN_EMAIL` | Admin login email |
-| `ADMIN_PASSWORD` | Admin login password |
-| `NEXT_PUBLIC_SITE_URL` | `https://www.ariosaconstructionsllc.com` |
 | `ADMIN_EMAIL` | `admin@ariosaconstructionsllc.com` |
 | `ADMIN_USERNAME` | `ariosaconstructions` |
 | `ADMIN_PASSWORD` | Your admin password |
-| `BLOB_READ_WRITE_TOKEN` | From Vercel → Storage → Blob (for production photo uploads) |
+| `NEXT_PUBLIC_SITE_URL` | `https://www.ariosaconstructionsllc.com` |
+| `BLOB_READ_WRITE_TOKEN` | From Vercel → Storage → Blob (production uploads) |
 | `CONTACT_TO_EMAIL` | `ariosaconstructions@gmail.com` |
 | `RESEND_API_KEY` | Optional — lead email notifications |
 
