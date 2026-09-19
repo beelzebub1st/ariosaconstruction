@@ -84,6 +84,7 @@ export const serviceAreaSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  email: z.string().email(),
+  // Accept email or short username (e.g. ariosaconstructions)
+  email: z.string().min(2),
   password: z.string().min(6),
 });

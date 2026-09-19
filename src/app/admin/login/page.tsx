@@ -8,8 +8,8 @@ export default async function AdminLoginPage() {
   if (session?.user) redirect("/admin");
 
   return (
-    <div className="flex min-h-screen items-center justify-center px-4">
-      <Suspense fallback={<div className="text-muted">Loading…</div>}>
+    <div className="flex min-h-screen items-center justify-center bg-[linear-gradient(160deg,#0c1829_0%,#16263a_42%,#3a1f1f_100%)] px-4 py-12">
+      <Suspense fallback={<div className="text-white/70">Loading…</div>}>
         <LoginForm />
       </Suspense>
     </div>

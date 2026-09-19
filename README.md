@@ -4,7 +4,7 @@ Professional multi-page construction & subcontracting website for Southwest Flor
 
 **Brand:** Building Dreams. Delivering Quality.  
 **Phone:** (786) 786-5837 · **Email:** ariosaconstructions@gmail.com  
-**Domain:** https://ariosaconstructions.com
+**Domain:** https://www.ariosaconstructionsllc.com
 
 ## How content works
 
@@ -28,10 +28,15 @@ Admin UI is at `/admin` (login works from env even without a database).
 | `AUTH_SECRET` | Long random string |
 | `ADMIN_EMAIL` | Admin login email |
 | `ADMIN_PASSWORD` | Admin login password |
-| `NEXT_PUBLIC_SITE_URL` | `https://ariosaconstructions.com` |
+| `NEXT_PUBLIC_SITE_URL` | `https://www.ariosaconstructionsllc.com` |
+| `ADMIN_EMAIL` | `admin@ariosaconstructionsllc.com` |
+| `ADMIN_USERNAME` | `ariosaconstructions` |
+| `ADMIN_PASSWORD` | Your admin password |
 | `BLOB_READ_WRITE_TOKEN` | From Vercel → Storage → Blob (for production photo uploads) |
 | `CONTACT_TO_EMAIL` | `ariosaconstructions@gmail.com` |
 | `RESEND_API_KEY` | Optional — lead email notifications |
+
+Use database name **`ariosaconstruction`** (not `neondb`) so CMS tables stay separate from any other Neon apps.
 
 3. From your machine (with `DATABASE_URL` in `.env`):
 

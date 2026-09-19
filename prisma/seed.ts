@@ -11,7 +11,7 @@ import { SERVICE_AREA_LOCATIONS } from "../src/lib/service-areas";
 const prisma = new PrismaClient();
 
 async function main() {
-  const email = process.env.ADMIN_EMAIL || "admin@ariosaconstructions.com";
+  const email = process.env.ADMIN_EMAIL || "admin@ariosaconstructionsllc.com";
   const password = process.env.ADMIN_PASSWORD || "ariosa-admin-change-me";
   const passwordHash = await bcrypt.hash(password, 12);
 

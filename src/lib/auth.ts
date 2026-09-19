@@ -20,9 +20,17 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
         const parsed = loginSchema.safeParse(credentials);
         if (!parsed.success) return null;
 
-        const { email, password } = parsed.data;
-        const adminEmail = process.env.ADMIN_EMAIL || "admin@ariosaconstructions.com";
+        const adminEmail =
+          process.env.ADMIN_EMAIL || "admin@ariosaconstructionsllc.com";
         const adminPassword = process.env.ADMIN_PASSWORD || "ariosa-admin-change-me";
+        const adminUsername = (
+          process.env.ADMIN_USERNAME || "ariosaconstructions"
+        ).toLowerCase();
+
+        const loginId = parsed.data.email.trim().toLowerCase();
+        const password = parsed.data.password;
+        const email =
+          loginId === adminUsername ? adminEmail.toLowerCase() : loginId;
 
         try {
           const user = await prisma.user.findUnique({ where: { email } });
@@ -35,7 +43,10 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
           // DB unavailable — fall through to env admin
         }
 
-        if (email === adminEmail && password === adminPassword) {
+        if (
+          (email === adminEmail.toLowerCase() || loginId === adminUsername) &&
+          password === adminPassword
+        ) {
           return { id: "env-admin", email: adminEmail, name: "Admin" };
         }
         return null;
