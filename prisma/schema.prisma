@@ -155,5 +155,7 @@ model Media {
   url       String
   alt       String?
   filename  String?
+  mimeType  String?
+  bytes     Bytes?
   createdAt DateTime @default(now())
 }

@@ -1,9 +1,10 @@
 import { put } from "@vercel/blob";
-import { mkdir, writeFile } from "fs/promises";
-import path from "path";
 import { NextResponse } from "next/server";
 import { auth } from "@/lib/auth";
 import { prisma } from "@/lib/prisma";
+
+/** Max size for Neon-stored uploads (Hobby-safe). Blob can be larger. */
+const MAX_NEON_BYTES = 2.5 * 1024 * 1024;
 
 export async function POST(request: Request) {
   const session = await auth();
@@ -19,32 +20,65 @@ export async function POST(request: Request) {
 
   const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
   const key = `ariosa/${Date.now()}-${safeName}`;
-  let url: string;
+  const mimeType = file.type || "application/octet-stream";
+  const buffer = Buffer.from(await file.arrayBuffer());
 
+  // Prefer Vercel Blob when configured
   if (process.env.BLOB_READ_WRITE_TOKEN) {
-    const blob = await put(key, file, { access: "public" });
-    url = blob.url;
-  } else {
-    // Local / non-Blob fallback — files land in public/uploads
-    const bytes = Buffer.from(await file.arrayBuffer());
-    const dir = path.join(process.cwd(), "public", "uploads");
-    await mkdir(dir, { recursive: true });
-    const filename = `${Date.now()}-${safeName}`;
-    await writeFile(path.join(dir, filename), bytes);
-    url = `/uploads/${filename}`;
+    const blob = await put(key, buffer, {
+      access: "public",
+      contentType: mimeType,
+    });
+    try {
+      await prisma.media.create({
+        data: {
+          url: blob.url,
+          filename: file.name,
+          alt: file.name,
+          mimeType,
+        },
+      });
+    } catch {
+      // index optional
+    }
+    return NextResponse.json({ url: blob.url });
+  }
+
+  // Neon fallback — image bytes live in Postgres, served via /api/media/[id]
+  if (buffer.length > MAX_NEON_BYTES) {
+    return NextResponse.json(
+      {
+        error:
+          "File too large for database storage (max ~2.5MB). Create a Vercel Blob store (Storage → Blob) or upload a smaller image.",
+      },
+      { status: 413 }
+    );
   }
 
   try {
-    await prisma.media.create({
+    const media = await prisma.media.create({
       data: {
-        url,
+        url: "", // filled after we know the id
         filename: file.name,
         alt: file.name,
+        mimeType,
+        bytes: buffer,
       },
     });
-  } catch {
-    // Media index is optional if DB is unavailable
+    const url = `/api/media/${media.id}`;
+    await prisma.media.update({
+      where: { id: media.id },
+      data: { url },
+    });
+    return NextResponse.json({ url });
+  } catch (err) {
+    console.error("[upload:neon]", err);
+    return NextResponse.json(
+      {
+        error:
+          "Could not store file. Connect DATABASE_URL or create a Vercel Blob store.",
+      },
+      { status: 503 }
+    );
   }
-
-  return NextResponse.json({ url });
 }
